@@ -51,7 +51,7 @@ export default function Navbar() {
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[rgba(22,56,59,0.7)] backdrop-blur-2xl border-b border-[rgba(255,255,255,0.03)]'
+          ? 'bg-[rgba(18,59,99,0.7)] backdrop-blur-2xl border-b border-[rgba(255,255,255,0.03)]'
           : 'bg-transparent'
       }`}
     >
@@ -126,7 +126,7 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="md:hidden overflow-hidden"
             style={{
-              background: 'rgba(22,56,59,0.85)',
+              background: 'rgba(18,59,99,0.85)',
               backdropFilter: 'blur(30px)',
               borderBottom: '1px solid rgba(255,255,255,0.03)',
             }}

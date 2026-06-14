@@ -135,7 +135,7 @@ export default function RSVP() {
                     className="select-premium"
                   >
                     {[1, 2, 3, 4, 5].map((n) => (
-                      <option key={n} value={n} className="bg-[#0a1628]">
+                      <option key={n} value={n} className="bg-[#123B63]">
                         {n} {n === 1 ? 'Invitado' : 'Invitados'}
                       </option>
                     ))}
