@@ -23,7 +23,7 @@ export default function RSVP() {
     setLoading(true)
 
     const phone = eventConfig.rsvp.phone?.replace(/[^0-9]/g, '')
-    const text = `Hola soy ${formData.name}, confirmo mi asistencia al ${eventConfig.themeName} de ${eventConfig.heroName}. Asistiré con ${formData.guests} invitado(s).${formData.message ? ` Mensaje: ${formData.message}` : ''}`
+    const text = `💙 CONFIRMACIÓN DE ASISTENCIA 💙\n\nNombre: ${formData.name}\n\nConfirmo mi asistencia a los XV años de Hallie Aes ✨\n\nInvitados: ${formData.guests}\n\nMensaje para Hallie:\n${formData.message || '—'}\n\n¡Nos vemos muy pronto para celebrar juntos este día tan especial! 🫧`
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
 
     window.open(url, '_blank')

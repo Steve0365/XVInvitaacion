@@ -22,7 +22,7 @@ const eventConfig = {
     title: 'Un Mensaje Especial',
     from: 'Hallie',
     content:
-      'Estoy muy feliz de que me acompañes en este día tan especial para mí. Cada momento vivido me ha traído hasta aquí, y tenerte a mi lado lo hace aún más significativo. Gracias por ser parte de mi historia. ¡Nos vemos en la piscina!',
+      'Estoy muy feliz de que me acompañes en este día tan especial para mí. Cada momento vivido me ha traído hasta aquí, y tenerte a mi lado lo hace aún más significativo. Gracias por ser parte de mi historia. Sol, música, alberca y mucha diversión. Y ahí te espero.',
   },
 
   gallery: {

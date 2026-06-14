@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 const questions = [
   {
     question: '¿Cuál es la caricatura favorita de Hallie?',
-    options: ['Snoopy', 'Mickey Mouse', 'Hello Kitty', 'Pokémon'],
+    options: ['Snoopy', 'Minion', 'Olaf', 'Peabody'],
     correct: 0,
   },
   {
     question: '¿Cuál es su color favorito?',
     options: ['Azul', 'Morado', 'Rosa', 'Verde'],
-    correct: 1,
+    correct: 0,
   },
   {
     question: '¿Cuál es el país que sueña visitar?',
@@ -21,13 +21,13 @@ const questions = [
   },
   {
     question: '¿Quién es su celebrity crush?',
-    options: ['Timothée Chalamet', 'Jacob Elordi', 'Tom Holland', 'Harry Styles'],
-    correct: 1,
+    options: ['Henry Cavill', 'Zac Efron', 'Jacob Elordi', 'Tom Holland'],
+    correct: 0,
   },
   {
     question: '¿Qué describe mejor a Hallie?',
-    options: ['Deportista', 'Creativa', 'Tímida', 'Sería'],
-    correct: 1,
+    options: ['Sería', 'Enojona', 'Alegre', 'Traviesa'],
+    correct: 3,
   },
 ]
 
