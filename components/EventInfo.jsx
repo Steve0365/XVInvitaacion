@@ -69,14 +69,14 @@ export default function EventInfo() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[rgba(41,141,148,0.06)] text-[rgba(41,141,148,0.7)] mb-5 group-hover:bg-[rgba(41,141,148,0.1)] group-hover:scale-110 group-hover:rounded-xl transition-all duration-500">
                   <item.icon size={24} />
                 </div>
-                <h3 className="text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2 font-medium">
+                <h3 className="text-white/75 text-[11px] uppercase tracking-[0.25em] mb-2 font-medium">
                   {item.label}
                 </h3>
                 <p className="text-white font-display text-lg md:text-xl font-semibold tracking-tight">
                   {item.value}
                 </p>
                 {item.sub && (
-                  <p className="text-[rgba(255,255,255,0.2)] text-sm mt-1.5 font-light">
+                  <p className="text-white/75 text-sm mt-1.5 font-light">
                     {item.sub}
                   </p>
                 )}

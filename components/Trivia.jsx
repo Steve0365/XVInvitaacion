@@ -106,13 +106,13 @@ export default function Trivia() {
                   <p className="text-2xl font-bold" style={{ color: 'rgba(41, 141, 148, 0.9)' }}>
                     {score}
                   </p>
-                  <p className="text-[rgba(255,255,255,0.2)] text-[10px] uppercase tracking-[0.2em] mt-1">Correctas</p>
+                  <p className="text-white/75 text-[10px] uppercase tracking-[0.2em] mt-1">Correctas</p>
                 </div>
                 <div className="glass-card px-7 py-4 text-center min-w-[120px]">
                   <p className="text-2xl font-bold" style={{ color: 'rgba(255, 100, 100, 0.8)' }}>
                     {wrongAnswers}
                   </p>
-                  <p className="text-[rgba(255,255,255,0.2)] text-[10px] uppercase tracking-[0.2em] mt-1">Incorrectas</p>
+                  <p className="text-white/75 text-[10px] uppercase tracking-[0.2em] mt-1">Incorrectas</p>
                 </div>
               </div>
               <button onClick={restart} className="btn-secondary">
@@ -142,7 +142,7 @@ export default function Trivia() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-3">
             ¿Qué tanto conoces a Hallie?
           </h2>
-          <p className="text-[rgba(255,255,255,0.2)] text-sm">
+          <p className="text-white/75 text-sm">
             Pregunta {current + 1} de {questions.length}
           </p>
         </motion.div>

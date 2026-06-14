@@ -107,8 +107,8 @@ export default function RSVP() {
             <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.01)] to-transparent pointer-events-none" />
             <div className="relative space-y-6">
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPersonOutline size={14} style={{ color: 'rgba(41, 141, 148, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoPersonOutline size={14} />
                   Tu Nombre
                 </label>
                 <input
@@ -123,8 +123,8 @@ export default function RSVP() {
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoPeopleOutline size={14} style={{ color: 'rgba(41, 141, 148, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoPeopleOutline size={14} />
                   Número de Invitados
                 </label>
                 <div className="relative">
@@ -140,15 +140,15 @@ export default function RSVP() {
                       </option>
                     ))}
                   </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[rgba(255,255,255,0.15)]">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/60">
                     ▾
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-[rgba(255,255,255,0.2)] text-[11px] uppercase tracking-[0.25em] mb-2.5 font-medium">
-                  <IoChatbubbleOutline size={14} style={{ color: 'rgba(41, 141, 148, 0.5)' }} />
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  <IoChatbubbleOutline size={14} />
                   Mensaje para Hallie
                 </label>
                 <textarea
@@ -160,7 +160,7 @@ export default function RSVP() {
                   maxLength={500}
                   className="input-premium resize-none"
                 />
-                <p className="text-[rgba(255,255,255,0.08)] text-xs text-right mt-1.5">
+                <p className="text-white/50 text-xs text-right mt-1.5">
                   {formData.message.length}/500
                 </p>
               </div>
@@ -170,7 +170,7 @@ export default function RSVP() {
                 disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="btn-primary w-full"
+                className="rsvp-btn w-full"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -179,7 +179,7 @@ export default function RSVP() {
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                       className="w-4 h-4 border-2 rounded-full inline-block"
                       style={{
-                        borderColor: 'rgba(41,141,148,0.6)',
+                        borderColor: 'rgba(255,255,255,0.6)',
                         borderTopColor: 'transparent',
                       }}
                     />
@@ -191,7 +191,7 @@ export default function RSVP() {
               </motion.button>
 
               {eventConfig.rsvp.phone && (
-                <p className="text-center text-[rgba(255,255,255,0.12)] text-xs">
+                <p className="text-center text-white/60 text-xs">
                   O confirma vía WhatsApp:{' '}
                   <a
                     href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}

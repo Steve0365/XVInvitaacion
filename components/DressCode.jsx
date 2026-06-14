@@ -29,7 +29,7 @@ export default function DressCode() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
             {eventConfig.dressCode.title}
           </h2>
-          <p className="text-[rgba(255,255,255,0.25)] max-w-lg mx-auto font-light leading-relaxed text-sm md:text-base">
+          <p className="text-white/75 max-w-lg mx-auto font-light leading-relaxed text-sm md:text-base">
             {eventConfig.dressCode.description}
           </p>
         </motion.div>
@@ -43,7 +43,7 @@ export default function DressCode() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,255,255,0.02)] to-transparent pointer-events-none" />
           <div className="relative">
-            <p className="text-[rgba(255,255,255,0.15)] text-[10px] uppercase tracking-[0.3em] text-center mb-8 font-medium">
+            <p className="text-white/50 text-[10px] uppercase tracking-[0.3em] text-center mb-8 font-medium">
               {eventConfig.dressCode.note}
             </p>
             <div className="flex flex-wrap justify-center gap-6 md:gap-8">
@@ -72,7 +72,7 @@ export default function DressCode() {
                       />
                     </motion.div>
                   </div>
-                  <span className="text-[rgba(255,255,255,0.25)] text-[11px] font-medium tracking-wider">
+                  <span className="text-white/75 text-[11px] font-medium tracking-wider">
                     {color.name}
                   </span>
                 </motion.div>

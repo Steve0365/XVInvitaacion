@@ -183,7 +183,7 @@ export default function EnvelopeScreen({ onOpen }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3, duration: 1 }}
                 className="absolute bottom-8 text-[10px] tracking-[0.4em] uppercase"
-                style={{ color: 'rgba(255,255,255,0.08)' }}
+                style={{ color: 'rgba(255,255,255,0.5)' }}
               >
                 Presiona para abrir
               </motion.p>

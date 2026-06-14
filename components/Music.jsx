@@ -23,7 +23,7 @@ export default function Music() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-3">
             Playlist Colaborativa
           </h2>
-          <p className="text-[rgba(255,255,255,0.2)] text-sm max-w-sm mx-auto font-light leading-relaxed">
+          <p className="text-white/75 text-sm max-w-sm mx-auto font-light leading-relaxed">
             Agrega tus canciones favoritas para que todos las disfrutemos en la fiesta
           </p>
         </motion.div>
@@ -53,7 +53,7 @@ export default function Music() {
                 <h3 className="text-white font-display text-lg mb-2">
                   {eventConfig.music.playlistTitle || 'Ver Playlist'}
                 </h3>
-                <p className="text-[rgba(255,255,255,0.2)] text-sm mb-6 font-light">
+                <p className="text-white/75 text-sm mb-6 font-light">
                   Da click para abrir la playlist
                 </p>
                 <span className="btn-secondary inline-flex">
@@ -75,7 +75,7 @@ export default function Music() {
             <div className="relative">
               <IoMusicalNotes className="text-5xl mx-auto mb-5" style={{ color: 'rgba(41, 141, 148, 0.2)' }} />
               <h3 className="text-white/60 font-display text-lg mb-2">Playlist Colaborativa</h3>
-              <p className="text-[rgba(255,255,255,0.2)] text-sm leading-relaxed font-light">
+              <p className="text-white/75 text-sm leading-relaxed font-light">
                 Agrega el enlace de tu playlist favorita
                 <br />
                 <span className="text-[rgba(41,141,148,0.3)] text-[10px] tracking-wider uppercase">Configura en src/config/event.js</span>

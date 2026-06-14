@@ -111,7 +111,7 @@ export default function Hero() {
                   background: 'linear-gradient(90deg, transparent, rgba(41,141,148,0.4))',
                 }}
               />
-              <span className="text-[rgba(41,141,148,0.5)] text-[11px] tracking-[0.4em] uppercase font-light">
+              <span className="text-white/75 text-[11px] tracking-[0.4em] uppercase font-light">
                 XV Años
               </span>
               <motion.div
@@ -125,13 +125,13 @@ export default function Hero() {
 
           <motion.h1
             variants={scaleVariants}
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-display font-bold text-white text-glow-strong mb-2 tracking-tight leading-[0.9]"
+            className="hero-title text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-display font-bold mb-2 tracking-tight leading-[0.9]"
           >
             {eventConfig.heroName}
           </motion.h1>
 
           <motion.div variants={childVariants} className="mb-4 mt-2">
-            <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[rgba(228,199,107,0.5)]">
+            <span className="hero-subtitle font-script text-4xl sm:text-5xl md:text-6xl">
               {eventConfig.heroSubtitle}
             </span>
           </motion.div>
@@ -146,7 +146,7 @@ export default function Hero() {
 
           <motion.p
             variants={childVariants}
-            className="text-[rgba(255,255,255,0.25)] text-sm tracking-[0.4em] uppercase font-light"
+            className="section-small-text text-sm uppercase font-light"
           >
             Te invito a celebrar conmigo
           </motion.p>
@@ -160,14 +160,14 @@ export default function Hero() {
         onClick={scrollToCountdown}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
       >
-        <span className="text-[rgba(255,255,255,0.2)] text-[10px] tracking-[0.35em] uppercase group-hover:text-[rgba(41,141,148,0.5)] transition-all duration-500">
+        <span className="text-white/60 text-[10px] tracking-[0.35em] uppercase group-hover:text-white transition-all duration-500">
           Descubre más
         </span>
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <IoChevronDown className="text-lg text-[rgba(255,255,255,0.2)] group-hover:text-[rgba(41,141,148,0.5)] transition-all duration-500" />
+          <IoChevronDown className="text-lg text-white/60 group-hover:text-white transition-all duration-500" />
         </motion.div>
       </motion.button>
     </motion.section>

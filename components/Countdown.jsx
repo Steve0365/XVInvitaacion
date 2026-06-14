@@ -62,7 +62,7 @@ function CountdownItem({ value, label }) {
       >
         {formatted}
       </motion.span>
-      <span className="text-[rgba(255,255,255,0.25)] text-[10px] sm:text-xs uppercase tracking-[0.25em] mt-2 block font-medium relative">
+      <span className="text-white/75 text-[10px] sm:text-xs uppercase tracking-[0.25em] mt-2 block font-medium relative">
         {label}
       </span>
     </motion.div>
@@ -88,7 +88,7 @@ export default function CountdownSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-3">
             Faltan
           </h2>
-          <p className="text-[rgba(255,255,255,0.2)] text-sm md:text-base mb-14 max-w-md mx-auto font-light leading-relaxed">
+          <p className="text-white/75 text-sm md:text-base mb-14 max-w-md mx-auto font-light leading-relaxed">
             Cada segundo me acerca más a este día especial
           </p>
         </motion.div>
@@ -126,7 +126,7 @@ export default function CountdownSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-10 text-[rgba(255,255,255,0.12)] text-xs tracking-[0.2em] uppercase"
+          className="mt-10 text-white/60 text-xs tracking-[0.2em] uppercase"
         >
           {eventConfig.event.date}
         </motion.p>

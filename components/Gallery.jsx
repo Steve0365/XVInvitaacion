@@ -58,7 +58,7 @@ export default function Gallery() {
               <h3 className="text-xl font-display font-bold text-white/60 mb-3">
                 Galería de Fotos
               </h3>
-              <p className="text-[rgba(255,255,255,0.2)] text-sm leading-relaxed font-light">
+              <p className="text-white/75 text-sm leading-relaxed font-light">
                 Las fotos estarán disponibles pronto.
                 <br />
                 Conecta tu álbum de Google Photos.

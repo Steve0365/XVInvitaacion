@@ -1,9 +1,9 @@
 export default function OceanBackground() {
-  const bubbles = Array.from({ length: 40 })
+  const bubbles = Array.from({ length: 120 })
   const particles = Array.from({ length: 80 })
 
   return (
-    <div className="fixed inset-0 overflow-hidden -z-10">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
       {particles.map((_, i) => (
         <div
           key={`p-${i}`}
@@ -23,8 +23,8 @@ export default function OceanBackground() {
           key={`b-${i}`}
           className="bubble"
           style={{
-            width: `${10 + Math.random() * 40}px`,
-            height: `${10 + Math.random() * 40}px`,
+            width: `${20 + Math.random() * 70}px`,
+            height: `${20 + Math.random() * 70}px`,
             left: `${Math.random() * 100}%`,
             animationDuration: `${8 + Math.random() * 15}s`,
             animationDelay: `${Math.random() * 5}s`,
