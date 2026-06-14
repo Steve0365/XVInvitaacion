@@ -40,7 +40,7 @@ export default function Gallery() {
                 Álbum de Fotos
               </h3>
               <p className="text-white/75 text-sm mb-8 font-light max-w-xs mx-auto">
-                Mira y descarga las fotos de este día tan especial
+                ¿Tomaste fotos? Súbelas aquí para después compartirlas
               </p>
               <a
                 href={eventConfig.gallery.googlePhotosUrl}

@@ -1,10 +1,15 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function EnvelopeScreen({ onOpen }) {
+  const [mounted, setMounted] = useState(false)
   const [phase, setPhase] = useState('idle')
+
+  useEffect(() => { setMounted(true) }, [])
+
+  if (!mounted) return null
 
   const handleOpen = useCallback(() => {
     if (phase !== 'idle') return
@@ -26,6 +31,22 @@ export default function EnvelopeScreen({ onOpen }) {
           }}
         >
           <div className="absolute inset-0 pointer-events-none">
+            <div
+              className="absolute top-0 left-1/4 w-72 h-[900px] blur-3xl rotate-12"
+              style={{ background: 'rgba(255,255,255,0.05)' }}
+            />
+            <div
+              className="absolute top-0 right-1/4 w-72 h-[900px] blur-3xl -rotate-12"
+              style={{ background: 'rgba(248,216,106,0.08)' }}
+            />
+            <div
+              className="absolute top-0 left-1/3 w-96 h-[1000px] blur-3xl"
+              style={{ background: 'rgba(255,255,255,0.04)' }}
+            />
+            <div
+              className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[700px] h-[700px] rounded-full blur-[120px]"
+              style={{ background: 'rgba(31,107,163,0.15)' }}
+            />
             <motion.div
               animate={{ opacity: [0.04, 0.09, 0.04] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -44,6 +65,25 @@ export default function EnvelopeScreen({ onOpen }) {
               className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full"
               style={{ background: 'radial-gradient(circle, rgba(242,216,141,0.1), transparent 60%)', filter: 'blur(50px)' }}
             />
+            {Array.from({ length: 20 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  width: `${6 + Math.random() * 10}px`,
+                  height: `${6 + Math.random() * 10}px`,
+                  left: `${Math.random() * 100}%`,
+                  background: 'radial-gradient(circle, rgba(248,216,106,.9), rgba(248,216,106,0))',
+                  filter: 'blur(2px)',
+                }}
+                initial={{ y: '110vh', opacity: 0 }}
+                animate={{ y: '-20vh', opacity: [0, 0.6, 0] }}
+                transition={{ duration: 12 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 10 }}
+              />
+            ))}
+            <div className="absolute w-24 h-24 rounded-full border border-[#F8D86A]/30 backdrop-blur-sm left-[15%] top-[30%]" />
+            <div className="absolute w-16 h-16 rounded-full border border-[#F8D86A]/20 left-[75%] top-[20%]" />
+            <div className="absolute w-12 h-12 rounded-full border border-[#F8D86A]/30 left-[80%] top-[65%]" />
           </div>
 
           <motion.div

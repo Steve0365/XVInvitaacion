@@ -49,7 +49,10 @@ const sections = [
 ]
 
 export default function Home() {
+  const [ready, setReady] = useState(false)
   const [showMain, setShowMain] = useState(false)
+
+  useEffect(() => { setReady(true) }, [])
 
   const handleEnvelopeOpen = useCallback(() => {
     setShowMain(true)
@@ -59,6 +62,8 @@ export default function Home() {
     document.body.style.overflow = showMain ? '' : 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [showMain])
+
+  if (!ready) return null
 
   return (
     <>
