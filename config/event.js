@@ -35,7 +35,7 @@ const eventConfig = {
   },
 
   rsvp: {
-    formspreeEndpoint: 'https://script.google.com/macros/s/AKfycby-H2f4kKadFP4wavZhkn8vnRrqov-NgccMK2D0rJ3HqiMWEOIMeGvvpZSa24HzG6qgOg/exec',
+    formspreeEndpoint: 'https://script.google.com/macros/library/d/1lHh5l9sXI6pktluD8R-0O43f25n61D8f0vI8fEWJoLLRxiFPZhnEKllY/2',
     phone: '',
   },
 }
