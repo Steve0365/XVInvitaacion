@@ -2,10 +2,10 @@ const eventConfig = {
   heroName: 'Hallie Aes',
   heroSubtitle: 'Pool Party',
 
-  countdownDate: '2026-06-10T16:00:00-06:00',
+  countdownDate: '2026-07-10T16:00:00-06:00',
 
   event: {
-    date: '10 de Junio, 2026',
+    date: '10 de Julio, 2026',
     time: '4:00 - 10:00 PM',
     venue: 'Salón de Eventos',
     address: 'Dirección aquí',
@@ -30,7 +30,7 @@ const eventConfig = {
 
   music: {
     playlistTitle: 'Hallie\'s Pool Party',
-    playlistUrl: '',
+    playlistUrl: 'https://open.spotify.com/playlist/1Ef9ob9CiYLOCVtmGEjrcZ?si=tijuLodsRX2Llpq-6wvHWA&pt=9a8bccf508c2543b8598419bbec95ea1',
     songUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
   },
 

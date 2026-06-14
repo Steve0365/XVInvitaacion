@@ -33,35 +33,27 @@ export default function Music() {
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            className="glass-card p-10 md:p-12 text-center max-w-lg mx-auto relative overflow-hidden"
           >
-            <a
-              href={eventConfig.music.playlistUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block glass-card p-10 text-center relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.015)] to-transparent pointer-events-none group-hover:opacity-0 transition-opacity" />
-              <div className="relative">
-                <motion.div
-                  className="w-20 h-20 mx-auto mb-5 rounded-2xl bg-[rgba(41,141,148,0.05)] border border-[rgba(41,141,148,0.1)] flex items-center justify-center group-hover:scale-110 group-hover:rounded-xl transition-all duration-500"
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <IoMusicalNotes className="text-3xl" style={{ color: 'rgba(41, 141, 148, 0.6)' }} />
-                </motion.div>
-                <h3 className="text-white font-display text-lg mb-2">
-                  {eventConfig.music.playlistTitle || 'Ver Playlist'}
-                </h3>
-                <p className="text-white/75 text-sm mb-6 font-light">
-                  Da click para abrir la playlist
-                </p>
-                <span className="btn-secondary inline-flex">
-                  <IoMusicalNotes size={14} />
-                  Agregar Canción
-                </span>
-              </div>
-            </a>
+            <div className="relative">
+              <div className="text-5xl mb-5 opacity-40">🎵</div>
+              <h3 className="text-xl font-display font-bold text-white mb-2">
+                {eventConfig.music.playlistTitle || 'Playlist Colaborativa'}
+              </h3>
+              <p className="text-white/75 text-sm mb-8 font-light max-w-xs mx-auto">
+                Agrega tus canciones favoritas y disfruta la playlist de la fiesta
+              </p>
+              <a
+                href={eventConfig.music.playlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rsvp-btn inline-flex"
+              >
+                <IoMusicalNotes size={16} />
+                <span>Abrir en Spotify</span>
+              </a>
+            </div>
           </motion.div>
         ) : (
           <motion.div
