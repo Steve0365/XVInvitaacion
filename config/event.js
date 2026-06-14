@@ -36,8 +36,7 @@ const eventConfig = {
   },
 
   rsvp: {
-    formspreeEndpoint: 'https://script.google.com/macros/s/AKfycbxsW2ZEVfBhKdBLWXd7BIuyBUV1yH_rcSrVbSb7MzG4Bt7rNoMHl5B8WeIBi2_ddkT99A/exec',
-    phone: '',
+    phone: '+529995623618',
   },
 }
 

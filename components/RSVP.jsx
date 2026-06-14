@@ -21,25 +21,16 @@ export default function RSVP() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    try {
-      if (eventConfig.rsvp.formspreeEndpoint) {
-        await fetch(eventConfig.rsvp.formspreeEndpoint, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: new URLSearchParams({
-            name: formData.name,
-            guests: formData.guests,
-            message: formData.message,
-          }),
-        })
-      }
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setSubmitted(true)
-    } catch {
-      setSubmitted(true)
-    } finally {
-      setLoading(false)
-    }
+
+    const phone = eventConfig.rsvp.phone?.replace(/[^0-9]/g, '')
+    const text = `Hola soy ${formData.name}, confirmo mi asistencia al ${eventConfig.themeName} de ${eventConfig.heroName}. Asistiré con ${formData.guests} invitado(s).${formData.message ? ` Mensaje: ${formData.message}` : ''}`
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
+
+    window.open(url, '_blank')
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setSubmitted(true)
+    setLoading(false)
   }
 
   if (submitted) {
@@ -183,26 +174,16 @@ export default function RSVP() {
                         borderTopColor: 'transparent',
                       }}
                     />
-                    Enviando...
+                    Abriendo WhatsApp...
                   </span>
                 ) : (
-                  'Confirmar Asistencia'
+                  'Confirmar vía WhatsApp'
                 )}
               </motion.button>
 
-              {eventConfig.rsvp.phone && (
-                <p className="text-center text-white/60 text-xs">
-                  O confirma vía WhatsApp:{' '}
-                  <a
-                    href={`https://wa.me/${eventConfig.rsvp.phone.replace(/[^0-9]/g, '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[rgba(41,141,148,0.4)] hover:text-[rgba(41,141,148,0.7)] transition-colors"
-                  >
-                    {eventConfig.rsvp.phone}
-                  </a>
-                </p>
-              )}
+              <p className="text-center text-white/60 text-xs">
+                Se abrirá WhatsApp con tus datos listos para enviar
+              </p>
             </div>
           </form>
         </motion.div>
