@@ -9,14 +9,14 @@ export default function EnvelopeScreen({ onOpen }) {
 
   useEffect(() => { setMounted(true) }, [])
 
-  if (!mounted) return null
-
   const handleOpen = useCallback(() => {
     if (phase !== 'idle') return
     setPhase('opening')
     setTimeout(() => setPhase('done'), 2800)
     setTimeout(() => onOpen(), 3400)
   }, [phase, onOpen])
+
+  if (!mounted) return null
 
   return (
     <AnimatePresence>
@@ -65,7 +65,7 @@ export default function EnvelopeScreen({ onOpen }) {
               className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full"
               style={{ background: 'radial-gradient(circle, rgba(242,216,141,0.1), transparent 60%)', filter: 'blur(50px)' }}
             />
-            {Array.from({ length: 20 }).map((_, i) => (
+            {Array.from({ length: 14 }).map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute rounded-full"
@@ -81,10 +81,38 @@ export default function EnvelopeScreen({ onOpen }) {
                 transition={{ duration: 12 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 10 }}
               />
             ))}
-            <div className="absolute w-24 h-24 rounded-full border border-[#F8D86A]/30 backdrop-blur-sm left-[15%] top-[30%]" />
-            <div className="absolute w-16 h-16 rounded-full border border-[#F8D86A]/20 left-[75%] top-[20%]" />
-            <div className="absolute w-12 h-12 rounded-full border border-[#F8D86A]/30 left-[80%] top-[65%]" />
+            <motion.div
+              className="absolute left-[18%] top-[25%] w-20 h-20 rounded-full"
+              style={{ border: '1px solid rgba(248,216,106,.25)', backdropFilter: 'blur(4px)' }}
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 7, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute right-[18%] top-[20%] w-14 h-14 rounded-full"
+              style={{ border: '1px solid rgba(248,216,106,.25)' }}
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute right-[22%] bottom-[20%] w-10 h-10 rounded-full"
+              style={{ border: '1px solid rgba(248,216,106,.3)' }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
           </div>
+
+          <motion.div
+            className="absolute left-1/2 top-1/2"
+            style={{
+              width: '650px', height: '650px',
+              transform: 'translate(-50%, -50%)',
+              borderRadius: '9999px',
+              background: 'radial-gradient(circle, rgba(31,107,163,.22), transparent 70%)',
+              filter: 'blur(90px)',
+            }}
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -161,41 +189,44 @@ export default function EnvelopeScreen({ onOpen }) {
                   </div>
                 </motion.div>
 
-                <motion.div
-                  animate={{ y: phase === 'opening' ? ['105%', '105%', '2%'] : '105%' }}
-                  transition={{ duration: 0.8, delay: 0.9, ease: [0.23, 1, 0.32, 1] }}
-                  style={{
-                    position: 'absolute', top: '2%', left: '4%', right: '4%', bottom: '2%', zIndex: 1,
-                  }}
-                >
-                  <div style={{
-                    width: '100%', height: '100%', borderRadius: '3px',
-                    background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                    padding: 'clamp(14px, 4vw, 28px)',
-                  }}>
+                {phase !== 'idle' && (
+                  <motion.div
+                    initial={{ y: '105%' }}
+                    animate={{ y: ['105%', '105%', '2%'] }}
+                    transition={{ duration: 0.8, delay: 0.9, ease: [0.23, 1, 0.32, 1] }}
+                    style={{
+                      position: 'absolute', top: '2%', left: '4%', right: '4%', bottom: '2%', zIndex: 1,
+                    }}
+                  >
                     <div style={{
-                      position: 'absolute', top: 10, left: 10, right: 10, bottom: 10,
-                      border: '1px solid rgba(180, 160, 130, 0.1)', borderRadius: '2px', pointerEvents: 'none',
-                    }} />
-                    <h3 className="font-display font-bold text-center"
-                      style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(3px, 1.5vw, 6px)' }}>
-                      ¡Bienvenidos!
-                    </h3>
-                    <p className="text-center leading-relaxed"
-                      style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
-                       Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                    </p>
-                    <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
-                    <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
-                      Hallie Aes
-                    </p>
-                    <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 1 }}>
-                      XV Años
-                    </p>
-                  </div>
-                </motion.div>
+                      width: '100%', height: '100%', borderRadius: '3px',
+                      background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                      padding: 'clamp(14px, 4vw, 28px)',
+                    }}>
+                      <div style={{
+                        position: 'absolute', top: 10, left: 10, right: 10, bottom: 10,
+                        border: '1px solid rgba(180, 160, 130, 0.1)', borderRadius: '2px', pointerEvents: 'none',
+                      }} />
+                      <h3 className="font-display font-bold text-center"
+                        style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(3px, 1.5vw, 6px)' }}>
+                        ¡Bienvenidos!
+                      </h3>
+                      <p className="text-center leading-relaxed"
+                        style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
+                         Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                      </p>
+                      <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
+                      <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
+                        Hallie Aes
+                      </p>
+                      <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 1 }}>
+                        XV Años
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
           </motion.div>
