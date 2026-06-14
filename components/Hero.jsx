@@ -128,7 +128,7 @@ export default function Hero() {
             className="text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-display font-bold mb-2 tracking-tight leading-[0.9]"
             style={{
               color: "#ffffff",
-              textShadow: "0 0 20px rgba(255,255,255,.9), 0 0 45px rgba(255,255,255,.35)",
+              textShadow: "0 0 15px rgba(255,255,255,.9), 0 0 30px rgba(248,216,106,.3), 0 0 50px rgba(248,216,106,.2)",
             }}
           >
             {eventConfig.heroName}

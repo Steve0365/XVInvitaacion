@@ -145,7 +145,7 @@ export default function EnvelopeScreen({ onOpen }) {
                     </h3>
                     <p className="text-center leading-relaxed"
                       style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
-                      Los espero en mi Pool Party para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                       Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
                     </p>
                     <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
                     <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>

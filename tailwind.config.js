@@ -27,11 +27,14 @@ module.exports = {
         },
 
         gold: {
+          DEFAULT: "#F8D86A",
           500: "#D4AF37",
           400: "#E4C76B",
           300: "#F2D88D",
           200: "#F8E8B9",
         },
+        goldLight: "#FFE89A",
+        oceanBlue: "#0D3B66",
 
       },
 

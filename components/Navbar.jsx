@@ -58,8 +58,8 @@ export default function Navbar() {
             className="font-bold text-xl tracking-wider transition-all duration-300 hover:opacity-90"
             style={{
               color: "#ffffff",
-              WebkitTextStroke: "0.7px #f8d86a",
-              textShadow: "0 0 8px rgba(248,216,106,.45)",
+              WebkitTextStroke: "0.8px #f8d86a",
+              textShadow: "0 0 10px rgba(248,216,106,.4)",
             }}
           >
             Hallie Aes
