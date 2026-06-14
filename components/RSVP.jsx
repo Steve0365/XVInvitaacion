@@ -26,8 +26,7 @@ export default function RSVP() {
         await fetch(eventConfig.rsvp.formspreeEndpoint, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
+          body: new URLSearchParams({
             name: formData.name,
             guests: formData.guests,
             message: formData.message,
