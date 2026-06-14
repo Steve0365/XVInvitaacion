@@ -2,11 +2,11 @@ const eventConfig = {
   heroName: 'Hallie Aes',
   heroSubtitle: 'Pool Party',
 
-  countdownDate: '2026-07-11T16:00:00-06:00',
+  countdownDate: '2026-06-10T16:00:00-06:00',
 
   event: {
-    date: '11 de Julio, 2026',
-    time: '4:00 PM',
+    date: '10 de Junio, 2026',
+    time: '4:00 - 10:00 PM',
     venue: 'Salón de Eventos',
     address: 'Dirección aquí',
   },
@@ -25,7 +25,7 @@ const eventConfig = {
   },
 
   gallery: {
-    googlePhotosUrl: '',
+    googlePhotosUrl: 'https://photos.app.goo.gl/qNrrwhwaHcST9ArY9',
   },
 
   music: {
