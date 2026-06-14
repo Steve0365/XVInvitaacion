@@ -49,17 +49,18 @@ export default function Navbar() {
     <motion.nav
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-[rgba(18,59,99,0.7)] backdrop-blur-2xl border-b border-[rgba(255,255,255,0.03)]'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0b2f57]/95 backdrop-blur-lg border-b border-white/10 shadow-xl"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <button
             onClick={() => scrollTo('hero')}
-            className="logo font-display text-lg font-bold tracking-wider transition-all duration-300 hover:opacity-90"
+            className="font-bold text-xl tracking-wider transition-all duration-300 hover:opacity-90"
+            style={{
+              color: "#ffffff",
+              WebkitTextStroke: "0.7px #f8d86a",
+              textShadow: "0 0 8px rgba(248,216,106,.45)",
+            }}
           >
             Hallie Aes
           </button>

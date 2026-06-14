@@ -125,7 +125,11 @@ export default function Hero() {
 
           <motion.h1
             variants={scaleVariants}
-            className="hero-title text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-display font-bold mb-2 tracking-tight leading-[0.9]"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[140px] font-display font-bold mb-2 tracking-tight leading-[0.9]"
+            style={{
+              color: "#ffffff",
+              textShadow: "0 0 20px rgba(255,255,255,.9), 0 0 45px rgba(255,255,255,.35)",
+            }}
           >
             {eventConfig.heroName}
           </motion.h1>

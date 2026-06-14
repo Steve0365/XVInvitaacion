@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
-import OceanBackground from '../components/OceanBackground'
+import OceanBubbles from '../components/OceanBubbles'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import CountdownSection from '../components/Countdown'
@@ -64,7 +64,7 @@ export default function Home() {
     <>
       {!showMain && <EnvelopeScreen onOpen={handleEnvelopeOpen} />}
 
-      <OceanBackground />
+      <OceanBubbles />
 
       <AnimatePresence>
         {showMain && (

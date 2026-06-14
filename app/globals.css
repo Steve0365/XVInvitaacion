@@ -36,10 +36,7 @@ body {
   overflow-x: hidden;
   color: white;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.12), transparent 40%),
-    radial-gradient(circle at 20% 50%, rgba(123,200,234,0.12), transparent 35%),
-    radial-gradient(circle at 80% 60%, rgba(157,220,242,0.12), transparent 35%),
-    linear-gradient(180deg, #123B63 0%, #1B4E7A 25%, #2D6F9E 65%, #57AEDD 100%);
+    linear-gradient(180deg, #07213f 0%, #0d3f70 40%, #1f6ba3 75%, #4aa8dd 100%);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -319,29 +316,6 @@ body {
     pointer-events: none;
   }
 
-  .particle {
-    position: absolute;
-    border-radius: 999px;
-    background: #E2F7FB;
-    box-shadow:
-      0 0 10px #E2F7FB,
-      0 0 25px #9DDCF2,
-      0 0 40px #57AEDD;
-    animation: floatParticle infinite ease-in-out;
-  }
-
-  .bubble {
-    position: absolute;
-    bottom: -100px;
-    border-radius: 999px;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.1));
-    box-shadow:
-      0 0 20px rgba(255,255,255,0.4),
-      0 0 40px rgba(123,200,234,0.5),
-      0 0 80px rgba(123,200,234,0.25);
-    animation: bubbleUp linear infinite;
-  }
 }
 
 @layer utilities {
@@ -353,24 +327,6 @@ body {
   }
   .backface-hidden {
     backface-visibility: hidden;
-  }
-}
-
-@keyframes floatParticle {
-  0% { transform: translateY(0); opacity: 0.2; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-200px); opacity: 0.1; }
-}
-
-@keyframes bubbleUp {
-  0% {
-    transform: translateY(0) translateX(0) scale(0.4);
-    opacity: 0.2;
-  }
-  50% { opacity: 0.8; }
-  100% {
-    transform: translateY(-120vh) translateX(40px) scale(1.2);
-    opacity: 0;
   }
 }
 

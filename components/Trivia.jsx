@@ -167,15 +167,14 @@ export default function Trivia() {
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="glass-card p-8 md:p-10 mb-6 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.01)] to-transparent pointer-events-none" />
+            <div className="p-8 md:p-10 mb-6 relative overflow-hidden bg-[#0d3b66]/70 backdrop-blur-xl border border-white/15 shadow-2xl rounded-2xl">
               <div className="relative">
                 <h3 className="text-xl md:text-2xl font-display font-semibold text-white mb-8 text-center leading-relaxed">
                   {questions[current].question}
                 </h3>
                 <div className="space-y-3">
                   {questions[current].options.map((option, index) => {
-                    let optionStyle = 'bg-[rgba(255,255,255,0.02)] border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] cursor-pointer'
+                    let optionStyle = 'bg-[#1b5f97]/70 hover:bg-[#2874b6]/90 border border-white/10 text-white cursor-pointer'
 
                     if (selected !== null) {
                       if (index === questions[current].correct) {
