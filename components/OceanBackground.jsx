@@ -436,10 +436,10 @@ export default function OceanBackground() {
         style={{
           zIndex: 0,
           background: `
-            radial-gradient(ellipse at 15% 30%, rgba(63, 163, 170, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 30%, rgba(41, 141, 148, 0.05) 0%, transparent 50%),
             radial-gradient(ellipse at 85% 20%, rgba(89, 184, 190, 0.04) 0%, transparent 45%),
             radial-gradient(ellipse at 50% 80%, rgba(41, 141, 148, 0.05) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 50%, rgba(63, 163, 170, 0.03) 0%, transparent 40%),
+            radial-gradient(ellipse at 70% 50%, rgba(41, 141, 148, 0.03) 0%, transparent 40%),
             radial-gradient(ellipse at 25% 80%, rgba(41, 141, 148, 0.03) 0%, transparent 35%),
             linear-gradient(180deg,
               rgba(22, 56, 59, 0) 0%,

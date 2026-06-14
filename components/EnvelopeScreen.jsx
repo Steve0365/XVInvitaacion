@@ -30,7 +30,7 @@ export default function EnvelopeScreen({ onOpen }) {
               animate={{ opacity: [0.04, 0.09, 0.04] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(63,163,170,0.25), transparent 70%)', filter: 'blur(60px)' }}
+              style={{ background: 'radial-gradient(circle, rgba(41,141,148,0.25), transparent 70%)', filter: 'blur(60px)' }}
             />
             <motion.div
               animate={{ opacity: [0.03, 0.07, 0.03] }}
