@@ -22,11 +22,21 @@ export default function RSVP() {
     e.preventDefault()
     setLoading(true)
 
-    const phone = eventConfig.rsvp.phone?.replace(/[^0-9]/g, '')
-    const text = `💙 CONFIRMACIÓN DE ASISTENCIA 💙\n\nNombre: ${formData.name}\n\nConfirmo mi asistencia a los XV años de Hallie Aes ✨\n\nInvitados: ${formData.guests}\n\nMensaje para Hallie:\n${formData.message || '—'}\n\n¡Nos vemos muy pronto para celebrar juntos este día tan especial! 🫧`
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
-
-    window.open(url, '_blank')
+    try {
+      await fetch(eventConfig.rsvp.formspreeEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre: formData.name,
+          invitados: formData.guests,
+          asistencia: 'Confirmado',
+          mensaje: formData.message,
+        }),
+      })
+    } catch (err) {
+      console.error('Sheet error:', err)
+    }
 
     await new Promise((resolve) => setTimeout(resolve, 1000))
     setSubmitted(true)
@@ -125,7 +135,7 @@ export default function RSVP() {
                     onChange={handleChange}
                     className="select-premium"
                   >
-                    {[1, 2, 3].map((n) => (
+                    {[1, 2].map((n) => (
                       <option key={n} value={n} className="bg-[#123B63]">
                         {n} {n === 1 ? 'Invitado' : 'Invitados'}
                       </option>
@@ -174,15 +184,15 @@ export default function RSVP() {
                         borderTopColor: 'transparent',
                       }}
                     />
-                    Abriendo WhatsApp...
+                    Enviando...
                   </span>
                 ) : (
-                  'Confirmar vía WhatsApp'
+                  'Confirmar Asistencia'
                 )}
               </motion.button>
 
               <p className="text-center text-white/60 text-xs">
-                Se abrirá WhatsApp con tus datos listos para enviar
+                Tu confirmación se guardará directamente
               </p>
             </div>
           </form>
