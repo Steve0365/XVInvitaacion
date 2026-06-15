@@ -36,6 +36,14 @@ module.exports = {
         goldLight: "#FFE89A",
         oceanBlue: "#0D3B66",
 
+        hallie: {
+          coral: "#D96B4A",
+          sage: "#A8B8A0",
+          aqua: "#C9DDE0",
+          ivory: "#EFE4CF",
+          gold: "#E7D59B",
+        },
+
       },
 
       fontFamily: {
