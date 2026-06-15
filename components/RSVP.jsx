@@ -18,7 +18,7 @@ export default function RSVP() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e) => {
+  const enviarConfirmacion = async (e) => {
     e.preventDefault()
     setLoading(true)
 
@@ -34,8 +34,10 @@ export default function RSVP() {
           mensaje: formData.message,
         }),
       })
+      alert('✨ Confirmación enviada correctamente')
     } catch (err) {
-      console.error('Sheet error:', err)
+      console.error('Error enviando RSVP:', err)
+      alert('No se pudo enviar la confirmación')
     }
 
     await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -104,7 +106,7 @@ export default function RSVP() {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
         >
-          <form onSubmit={handleSubmit} className="glass-card p-8 md:p-10 space-y-6 relative overflow-hidden">
+          <form onSubmit={enviarConfirmacion} className="glass-card p-8 md:p-10 space-y-6 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-[rgba(41,141,148,0.01)] to-transparent pointer-events-none" />
             <div className="relative space-y-6">
               <div>
