@@ -23,24 +23,31 @@ export default function RSVP() {
     setLoading(true)
 
     try {
-      await fetch(eventConfig.rsvp.formspreeEndpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre: formData.name,
-          invitados: formData.guests,
-          asistencia: 'Confirmado',
-          mensaje: formData.message,
-        }),
-      })
-      alert('✨ Confirmación enviada correctamente')
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxmFYogIFQvtfl0injlDMECeLAA6-N7aWbcrKIlZpUnyH5GJ5m5OiGJYYaJj8vO41k1HQ/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre: formData.name,
+            invitados: formData.guests,
+            asistencia: "Confirmado",
+            mensaje: formData.message,
+          }),
+        }
+      )
+      alert("✨ Confirmación enviada correctamente")
     } catch (err) {
-      console.error('Error enviando RSVP:', err)
-      alert('No se pudo enviar la confirmación')
+      console.error("Error enviando RSVP:", err)
+      alert("No se pudo enviar la confirmación")
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) =>
+      setTimeout(resolve, 1000)
+    )
     setSubmitted(true)
     setLoading(false)
   }
