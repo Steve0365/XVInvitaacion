@@ -28,7 +28,7 @@ export default function RSVP() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const enviarConfirmacion = async (e) => {
+  const enviarConfirmacion = (e) => {
     e.preventDefault()
     setLoading(true)
 
@@ -37,13 +37,13 @@ export default function RSVP() {
     form.action = "https://docs.google.com/forms/d/e/1FAIpQLScP4yLHK3HexMlGo4repFJmZfzTmn8PL1-zS2rkO_OM7ivZuQ/formResponse"
     form.target = "hidden_iframe"
 
-    const campos = {
+    const data = {
       "entry.2001389412": formData.name,
       "entry.346994890": formData.guests,
       "entry.1050979229": formData.message,
     }
 
-    Object.entries(campos).forEach(([key, value]) => {
+    Object.entries(data).forEach(([key, value]) => {
       const input = document.createElement("input")
       input.type = "hidden"
       input.name = key
@@ -58,7 +58,7 @@ export default function RSVP() {
       alert("✨ Confirmación enviada correctamente")
       setSubmitted(true)
       setLoading(false)
-    }, 1200)
+    }, 1500)
   }
 
   if (submitted) {
