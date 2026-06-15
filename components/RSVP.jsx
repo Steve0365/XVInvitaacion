@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { IoCheckmarkCircle, IoPersonOutline, IoPeopleOutline, IoChatbubbleOutline } from 'react-icons/io5'
 import eventConfig from '../config/event'
@@ -14,6 +14,16 @@ export default function RSVP() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    const iframe = document.createElement("iframe")
+    iframe.name = "hidden_iframe"
+    iframe.style.display = "none"
+    document.body.appendChild(iframe)
+    return () => {
+      document.body.removeChild(iframe)
+    }
+  }, [])
+
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -22,34 +32,33 @@ export default function RSVP() {
     e.preventDefault()
     setLoading(true)
 
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxmFYogIFQvtfl0injlDMECeLAA6-N7aWbcrKIlZpUnyH5GJ5m5OiGJYYaJj8vO41k1HQ/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: formData.name,
-            invitados: formData.guests,
-            asistencia: "Confirmado",
-            mensaje: formData.message,
-          }),
-        }
-      )
-      alert("✨ Confirmación enviada correctamente")
-    } catch (err) {
-      console.error("Error enviando RSVP:", err)
-      alert("No se pudo enviar la confirmación")
+    const form = document.createElement("form")
+    form.method = "POST"
+    form.action = "https://docs.google.com/forms/d/e/1FAIpQLScP4yLHK3HexMlGo4repFJmZfzTmn8PL1-zS2rkO_OM7ivZuQ/formResponse"
+    form.target = "hidden_iframe"
+
+    const campos = {
+      "entry.2001389412": formData.name,
+      "entry.346994890": formData.guests,
+      "entry.1050979229": formData.message,
     }
 
-    await new Promise((resolve) =>
-      setTimeout(resolve, 1000)
-    )
-    setSubmitted(true)
-    setLoading(false)
+    Object.entries(campos).forEach(([key, value]) => {
+      const input = document.createElement("input")
+      input.type = "hidden"
+      input.name = key
+      input.value = value
+      form.appendChild(input)
+    })
+
+    document.body.appendChild(form)
+    form.submit()
+
+    setTimeout(() => {
+      alert("✨ Confirmación enviada correctamente")
+      setSubmitted(true)
+      setLoading(false)
+    }, 1200)
   }
 
   if (submitted) {
