@@ -165,20 +165,21 @@ export default function RSVP() {
                 />
               </div>
 
-              <div>
-                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
-                  📱 Número de celular
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="+52 938 405 4474"
-                  className="input-premium"
-                />
-              </div>
+        <div>
+  <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+    📱 Número de celular
+  </label>
+
+  <input
+    type="tel"
+    name="phone"
+    value={formData.phone}
+    onChange={handleChange}
+    required
+    placeholder="Ej. +52 999 000 0000"
+    className="input-premium"
+  />
+</div>
 
               <div>
                 <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
