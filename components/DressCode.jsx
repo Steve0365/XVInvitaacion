@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import eventConfig from '../config/event'
 
 const colors = [
-  { hex: '#D96B4A', name: 'Coral Sunset' },
-  { hex: '#A8B8A0', name: 'Sage Ocean' },
-  { hex: '#C9DDE0', name: 'Pearl Aqua' },
-  { hex: '#EFE4CF', name: 'Ivory Sand' },
-  { hex: '#E7D59B', name: 'Soft Gold' },
+  { hex: '#D96B4A', name: 'Coral' },
+  { hex: '#A8B8A0', name: 'Verde Salvia' },
+  { hex: '#C9DDE0', name: 'Azul Perla' },
+  { hex: '#EFE4CF', name: 'Marfil' },
+  { hex: '#E7D59B', name: 'Dorado' },
 ]
 
 export default function DressCode() {
