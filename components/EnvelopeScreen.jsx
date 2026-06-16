@@ -12,8 +12,8 @@ export default function EnvelopeScreen({ onOpen }) {
   const handleOpen = useCallback(() => {
     if (phase !== 'idle') return
     setPhase('opening')
-    setTimeout(() => setPhase('done'), 2800)
-    setTimeout(() => onOpen(), 3400)
+    setTimeout(() => setPhase('done'), 5000)
+    setTimeout(() => onOpen(), 5600)
   }, [phase, onOpen])
 
   if (!mounted) return null
@@ -115,120 +115,84 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-            style={{ perspective: '1000px' }}
+            className="relative w-[310px] h-[210px] rounded-2xl overflow-hidden cursor-pointer"
+            onClick={handleOpen}
+            animate={{
+              y: [0, -8, 0],
+              boxShadow: [
+                "0 0 20px rgba(231,213,155,0.25)",
+                "0 0 45px rgba(231,213,155,0.65)",
+                "0 0 20px rgba(231,213,155,0.25)"
+              ]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           >
-            <div className="relative" style={{ width: 'min(82vw, 380px)', aspectRatio: '1.35', maxWidth: 380 }}>
-              <div
-                className="absolute -inset-[3px] rounded-[10px] pointer-events-none"
-                style={{
-                  background: 'linear-gradient(155deg, rgba(242,216,141,0.2), rgba(242,216,141,0.06), rgba(242,216,141,0.15))',
-                  boxShadow: '0 0 20px rgba(242,216,141,0.08), inset 0 0 20px rgba(242,216,141,0.04)',
-                }}
-              />
-              <div
-                className="absolute -inset-[1px] rounded-[9px] pointer-events-none"
-                style={{
-                  border: '1px solid rgba(242,216,141,0.35)',
-                  boxShadow: '0 0 30px rgba(242,216,141,0.12)',
-                }}
-              />
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-xl border border-[#E7D59B]/60 rounded-2xl" />
 
-              <div
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              animate={{ x: [-300, 300] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            />
+
+            {phase === 'idle' && (
+              <motion.div
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#E7D59B] flex items-center justify-center text-[#123B63] text-3xl font-bold"
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                H
+              </motion.div>
+            )}
+
+            <motion.div
+              className="absolute top-0 left-0 w-full h-1/2 bg-white/20 border-b border-white/30 origin-top"
+              animate={phase !== 'idle' ? { rotateX: -160, opacity: 0 } : { rotateX: 0 }}
+              transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
+            />
+
+            {phase !== 'idle' && (
+              <motion.div
+                initial={{ y: '105%' }}
+                animate={{ y: ['105%', '105%', '2%'] }}
+                transition={{ duration: 0.8, delay: 0.9, ease: [0.23, 1, 0.32, 1] }}
                 style={{
-                  width: '100%', height: '100%', position: 'relative',
-                  borderRadius: '8px',
-                  background: 'linear-gradient(155deg, rgba(220,240,242,0.94) 0%, rgba(200,230,232,0.9) 30%, rgba(185,222,225,0.84) 60%, rgba(210,235,237,0.9) 100%)',
-                  boxShadow: '0 12px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(255,255,255,0.1)',
-                  overflow: 'hidden',
+                  position: 'absolute', top: '2%', left: '4%', right: '4%', bottom: '2%', zIndex: 1,
                 }}
               >
                 <div style={{
-                  position: 'absolute', top: 8, left: 8, right: 8, bottom: 8,
-                  border: '1px solid rgba(162,224,226,0.25)', borderRadius: '5px', pointerEvents: 'none', zIndex: 0,
-                }} />
-
-                <div
-                  className="absolute top-8 left-10 right-10 h-[1px] pointer-events-none"
-                  style={{ background: 'linear-gradient(90deg, transparent, rgba(242,216,141,0.12), transparent)', zIndex: 1 }}
-                />
-                <div
-                  className="absolute bottom-8 left-10 right-10 h-[1px] pointer-events-none"
-                  style={{ background: 'linear-gradient(90deg, transparent, rgba(242,216,141,0.12), transparent)', zIndex: 1 }}
-                />
-                <div
-                  className="absolute top-10 bottom-10 left-8 w-[1px] pointer-events-none"
-                  style={{ background: 'linear-gradient(180deg, transparent, rgba(242,216,141,0.1), transparent)', zIndex: 1 }}
-                />
-                <div
-                  className="absolute top-10 bottom-10 right-8 w-[1px] pointer-events-none"
-                  style={{ background: 'linear-gradient(180deg, transparent, rgba(242,216,141,0.1), transparent)', zIndex: 1 }}
-                />
-
-                <motion.div
-                  animate={phase === 'opening' ? { rotateX: -180 } : { rotateX: 0 }}
-                  transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                  style={{
-                    position: 'absolute', top: 0, left: 0, width: '100%', height: '40%',
-                    transformOrigin: 'bottom center', transformStyle: 'preserve-3d',
-                    backfaceVisibility: 'hidden', zIndex: 3,
-                  }}
-                >
+                  width: '100%', height: '100%', borderRadius: '3px',
+                  background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  padding: 'clamp(14px, 4vw, 28px)',
+                }}>
                   <div style={{
-                    width: '100%', height: '100%',
-                    background: 'linear-gradient(155deg, rgba(210,235,237,0.95) 0%, rgba(195,225,228,0.9) 50%, rgba(185,215,218,0.85) 100%)',
-                    clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
-                    borderBottom: '1px solid rgba(162,224,226,0.12)',
-                  }}>
-                    <div
-                      className="absolute top-[38%] left-[28%] right-[28%] h-[1px]"
-                      style={{ background: 'linear-gradient(90deg, transparent, rgba(242,216,141,0.18), transparent)' }}
-                    />
-                  </div>
-                </motion.div>
-
-                {phase !== 'idle' && (
-                  <motion.div
-                    initial={{ y: '105%' }}
-                    animate={{ y: ['105%', '105%', '2%'] }}
-                    transition={{ duration: 0.8, delay: 0.9, ease: [0.23, 1, 0.32, 1] }}
-                    style={{
-                      position: 'absolute', top: '2%', left: '4%', right: '4%', bottom: '2%', zIndex: 1,
-                    }}
-                  >
-                    <div style={{
-                      width: '100%', height: '100%', borderRadius: '3px',
-                      background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                      padding: 'clamp(14px, 4vw, 28px)',
-                    }}>
-                      <div style={{
-                        position: 'absolute', top: 10, left: 10, right: 10, bottom: 10,
-                        border: '1px solid rgba(180, 160, 130, 0.1)', borderRadius: '2px', pointerEvents: 'none',
-                      }} />
-                      <h3 className="font-display font-bold text-center"
-                        style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(3px, 1.5vw, 6px)' }}>
-                        ¡Bienvenidos!
-                      </h3>
-                      <p className="text-center leading-relaxed"
-                        style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
-                         Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                      </p>
-                      <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
-                      <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
-                        Hallie Aes
-                      </p>
-                      <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 1 }}>
-                        XV Años
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </div>
+                    position: 'absolute', top: 10, left: 10, right: 10, bottom: 10,
+                    border: '1px solid rgba(180, 160, 130, 0.1)', borderRadius: '2px', pointerEvents: 'none',
+                  }} />
+                  <h3 className="font-display font-bold text-center"
+                    style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(3px, 1.5vw, 6px)' }}>
+                    ¡Bienvenidos!
+                  </h3>
+                  <p className="text-center leading-relaxed"
+                    style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
+                     Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                  </p>
+                  <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
+                  <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
+                    Hallie Aes
+                  </p>
+                  <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 1 }}>
+                    XV Años
+                  </p>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
 
           {phase === 'idle' && (
