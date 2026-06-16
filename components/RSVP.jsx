@@ -8,11 +8,19 @@ import eventConfig from '../config/event'
 export default function RSVP() {
   const [formData, setFormData] = useState({
     name: '',
+    phone: '',
     guests: '1',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const confirmed = localStorage.getItem('hallie_rsvp_confirmed')
+    if (confirmed) {
+      setSubmitted(true)
+    }
+  }, [])
 
   useEffect(() => {
     const iframe = document.createElement("iframe")
@@ -39,6 +47,7 @@ export default function RSVP() {
 
     const data = {
       "entry.2001389412": formData.name,
+      "entry.908209112": formData.phone,
       "entry.346994890": formData.guests,
       "entry.1050979229": formData.message,
     }
@@ -54,12 +63,15 @@ export default function RSVP() {
     document.body.appendChild(form)
     form.submit()
 
+    localStorage.setItem("hallie_rsvp_confirmed", "true")
+
     setTimeout(() => {
-      alert("✨ Confirmación enviada correctamente")
       setSubmitted(true)
       setLoading(false)
-    }, 1500)
+    }, 1200)
   }
+
+
 
   if (submitted) {
     return (
@@ -86,8 +98,20 @@ export default function RSVP() {
                 ¡Gracias por confirmar!
               </h3>
               <p className="text-[rgba(255,255,255,0.3)] leading-relaxed font-light">
-                Hallie está muy emocionada de que la acompañes en este día tan especial.
-                Te esperamos con mucho cariño.
+                Tu confirmación ha sido registrada correctamente ✨
+                <br /><br />
+                Gracias por acompañar a Hallie en este día tan especial.
+                <br /><br />
+                Si tienes alguna duda o problema con tu confirmación,
+                puedes comunicarte directamente por WhatsApp:
+                <br /><br />
+                <a
+                  href="https://wa.me/529384054474"
+                  target="_blank"
+                  className="text-white underline"
+                >
+                  +52 938 405 4474
+                </a>
               </p>
               <div className="section-divider mt-6" />
             </div>
@@ -137,6 +161,21 @@ export default function RSVP() {
                   onChange={handleChange}
                   required
                   placeholder="Escribe tu nombre completo"
+                  className="input-premium"
+                />
+              </div>
+
+              <div>
+                <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
+                  📱 Número de celular
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+52 938 405 4474"
                   className="input-premium"
                 />
               </div>
