@@ -12,8 +12,8 @@ export default function EnvelopeScreen({ onOpen }) {
   const handleOpen = useCallback(() => {
     if (phase !== 'idle') return
     setPhase('opening')
-    setTimeout(() => setPhase('done'), 5000)
-    setTimeout(() => onOpen(), 5600)
+    setTimeout(() => setPhase('done'), 3800)
+    setTimeout(() => onOpen(), 4500)
   }, [phase, onOpen])
 
   if (!mounted) return null
@@ -115,45 +115,44 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            className="relative w-[310px] h-[210px] rounded-2xl overflow-hidden cursor-pointer"
+            className="relative w-[340px] h-[230px] cursor-pointer"
             onClick={handleOpen}
-            animate={{
-              y: [0, -8, 0],
-              boxShadow: [
-                "0 0 20px rgba(231,213,155,0.25)",
-                "0 0 45px rgba(231,213,155,0.65)",
-                "0 0 20px rgba(231,213,155,0.25)"
-              ]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-xl border border-[#E7D59B]/60 rounded-2xl" />
-
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              animate={{ x: [-300, 300] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
+              className="absolute inset-0 rounded-xl overflow-hidden bg-[#163b5f] border border-[#E7D59B]"
+              animate={{
+                boxShadow: [
+                  "0 0 15px rgba(231,213,155,.3)",
+                  "0 0 45px rgba(231,213,155,.9)",
+                  "0 0 15px rgba(231,213,155,.3)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute bottom-0 left-0 w-full h-full border-b border-[#E7D59B]/70 rotate-[34deg] origin-bottom-left" />
+                <div className="absolute bottom-0 right-0 w-full h-full border-b border-[#E7D59B]/70 rotate-[-34deg] origin-bottom-right" />
+                <div className="absolute top-1/2 left-0 w-full border-t border-[#E7D59B]/40" />
+              </div>
 
-            {phase === 'idle' && (
               <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#E7D59B] flex items-center justify-center text-[#123B63] text-3xl font-bold"
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                H
-              </motion.div>
-            )}
+                className="absolute top-0 left-0 w-full h-[55%] bg-[#214d73] origin-top border-b border-[#E7D59B]/60"
+                animate={phase !== 'idle' ? { rotateX: -170, opacity: .2 } : { rotateX: 0 }}
+                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              />
 
-            <motion.div
-              className="absolute top-0 left-0 w-full h-1/2 bg-white/20 border-b border-white/30 origin-top"
-              animate={phase !== 'idle' ? { rotateX: -160, opacity: 0 } : { rotateX: 0 }}
-              transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
-            />
+              {phase === 'idle' && (
+                <motion.div
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-[#F4E3A1] to-[#B88A35] flex items-center justify-center text-[#123B63] text-4xl font-serif border-4 border-[#FFF2B8]"
+                  animate={{ scale: [1, 1.08, 1], rotate: [0, 3, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  H
+                </motion.div>
+              )}
+            </motion.div>
 
             {phase !== 'idle' && (
               <motion.div
