@@ -3,19 +3,19 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const bubbles = [
-  { size: 90, left: '8%', delay: 0 },
-  { size: 55, left: '18%', delay: 1 },
-  { size: 120, left: '35%', delay: 2 },
-  { size: 70, left: '52%', delay: 1.5 },
-  { size: 95, left: '68%', delay: 3 },
-  { size: 45, left: '80%', delay: 2.5 },
-  { size: 130, left: '90%', delay: 4 },
-  { size: 60, left: '25%', delay: 5 },
-  { size: 75, left: '60%', delay: 6 },
-]
+const bubbles = Array.from({ length: 18 }, (_, i) => ({
+  size: Math.floor(Math.random() * 70) + 35,
+  left: `${Math.random() * 100}%`,
+  delay: i * 1.8,
+  duration: 14 + Math.random() * 8,
+}))
 
-const particles = Array.from({ length: 45 })
+const particles = Array.from({ length: 55 }, (_, i) => ({
+  delay: Math.random() * 8,
+  duration: 5 + Math.random() * 5,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+}))
 
 export default function EnvelopeScreen({ onOpen }) {
   const [mounted, setMounted] = useState(false)
@@ -44,35 +44,39 @@ export default function EnvelopeScreen({ onOpen }) {
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#7bb7d9] via-[#4f91b7] to-[#245477]"
         >
           {/* Burbujas */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {bubbles.map((b, i) => (
               <motion.div
                 key={i}
                 className="
-                  absolute 
-                  rounded-full 
-                  border 
-                  border-[#f6dc7b]/80
-                  bg-transparent
-                  shadow-[0_0_18px_rgba(246,220,123,0.65)]
-                "
+      absolute
+      rounded-full
+      border
+      border-[#f6dc7b]/60
+      bg-transparent
+      shadow-[0_0_15px_rgba(246,220,123,0.35)]
+      "
                 style={{
                   width: b.size,
                   height: b.size,
                   left: b.left,
-                  bottom: '-5%',
+                  bottom: '-120px',
+                }}
+                initial={{
+                  opacity: 0,
+                  scale: 0.6,
                 }}
                 animate={{
-                  y: [0, -850],
-                  x: [0, 25, -25, 0],
-                  opacity: [0.45, 0.9, 0.45],
-                  scale: [1, 1.08, 1],
+                  y: [0, -900],
+                  x: [0, 20, -15, 0],
+                  opacity: [0, 0.75, 0.55, 0],
+                  scale: [0.8, 1, 1.05, 0.9],
                 }}
                 transition={{
-                  duration: 12 + i,
+                  duration: b.duration,
                   delay: b.delay,
                   repeat: Infinity,
-                  ease: 'easeInOut'
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -80,23 +84,36 @@ export default function EnvelopeScreen({ onOpen }) {
 
           {/* Partículas doradas */}
           <div className="absolute inset-0 pointer-events-none">
-            {particles.map((_, i) => (
+            {particles.map((p, i) => (
               <motion.span
                 key={i}
                 className="
-absolute 
-rounded-full 
-bg-[#f6dc7b]
-shadow-[0_0_22px_#f6dc7b]
-"
+    absolute
+    rounded-full
+    bg-[#f6dc7b]
+    shadow-[0_0_14px_#f6dc7b]
+    "
                 style={{
-                  width: i % 2 === 0 ? 5 : 3,
-                  height: i % 2 === 0 ? 5 : 3,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  width: i % 3 === 0 ? 5 : 3,
+                  height: i % 3 === 0 ? 5 : 3,
+                  left: `${p.left}%`,
+                  top: `${p.top}%`,
                 }}
-                animate={{ opacity: [0, 1, 0], scale: [0.5, 2, 0.5], y: [0, -100] }}
-                transition={{ duration: 4 + i, repeat: Infinity, delay: i / 2 }}
+                initial={{
+                  opacity:0,
+                  scale:0,
+                }}
+                animate={{
+                  opacity:[0,1,0],
+                  scale:[0.5,1.5,0.5],
+                  y:[0,-80],
+                }}
+                transition={{
+                  duration:p.duration,
+                  delay:p.delay,
+                  repeat:Infinity,
+                  ease:"easeInOut"
+                }}
               />
             ))}
           </div>
