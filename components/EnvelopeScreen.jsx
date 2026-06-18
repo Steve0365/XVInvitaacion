@@ -79,7 +79,7 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           {/* Sobre */}
-          <div className="relative overflow-visible z-20">
+          <div className="relative w-[420px] h-[260px]">
             <motion.div
               className="absolute inset-0 rounded-3xl border-2 border-[#f6dc7b] pointer-events-none"
               animate={{ opacity: [0.4, 1, 0.4], boxShadow: ['0 0 10px #f6dc7b', '0 0 35px #f6dc7b', '0 0 10px #f6dc7b'] }}
@@ -87,43 +87,37 @@ export default function EnvelopeScreen({ onOpen }) {
             />
 
             <motion.div
-              className="relative w-[clamp(300px,75vw,420px)] h-[clamp(185px,46vw,260px)] rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] overflow-hidden cursor-pointer z-10"
+              className="relative w-full h-full rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] overflow-hidden cursor-pointer z-10"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 5, repeat: Infinity }}
               onClick={() => handleOpen()}
             >
               <motion.div
-                className="absolute top-0 left-0 w-full origin-top z-20"
-                style={{
-                  height: 'clamp(90px, 23vw, 130px)',
-                  background: '#a9ccdc',
-                  clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-                }}
-                animate={isOpen ? { rotateX: -170, y: -20 } : { rotateX: 0, y: 0 }}
-                transition={{ duration: 1, ease: 'easeInOut' }}
+                className="absolute top-0 left-0 w-full h-[130px] origin-top z-20"
+                style={{ background: '#a9ccdc', clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
+                animate={isOpen ? { rotateX: -180, y: -20 } : { rotateX: 0, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
               />
             </motion.div>
 
-            {isOpen && (
-              <motion.div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[clamp(280px,75vw,380px)] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
-                  <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,30px)] text-[#4b3527] mb-[clamp(8px,2vw,12px)]">
-                    ¡Bienvenidos!
-                  </h3>
-                  <p className="text-[clamp(11px,2.8vw,14px)] text-[#765d4b] leading-relaxed max-w-[94%]">
-                    Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                  </p>
-                  <hr className="w-[30%] border-none h-[1px] bg-[rgba(180,160,130,0.3)] my-[clamp(10px,2vw,16px)]" />
-                  <span className="font-serif font-bold text-[clamp(18px,4.5vw,24px)] text-[#4b3527]">Hallie Aes</span>
-                  <span className="text-[clamp(13px,3vw,16px)] text-[#765d4b] mt-[2px]">XV Años</span>
-                </div>
-              </motion.div>
-            )}
+            <motion.div
+              initial={{ opacity: 0, y: 80, scale: 0.85 }}
+              animate={isOpen ? { opacity: 1, y: -170, scale: 1 } : { opacity: 0, y: 80, scale: 0.85 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 ${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}`}
+            >
+              <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[clamp(280px,75vw,380px)] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
+                <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,30px)] text-[#4b3527] mb-[clamp(8px,2vw,12px)]">
+                  ¡Bienvenidos!
+                </h3>
+                <p className="text-[clamp(11px,2.8vw,14px)] text-[#765d4b] leading-relaxed max-w-[94%]">
+                  Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                </p>
+                <hr className="w-[30%] border-none h-[1px] bg-[rgba(180,160,130,0.3)] my-[clamp(10px,2vw,16px)]" />
+                <span className="font-serif font-bold text-[clamp(18px,4.5vw,24px)] text-[#4b3527]">Hallie Aes</span>
+                <span className="text-[clamp(13px,3vw,16px)] text-[#765d4b] mt-[2px]">XV Años</span>
+              </div>
+            </motion.div>
           </div>
 
           {phase === 'idle' && (
