@@ -7,8 +7,8 @@ export default function DynamicBackground() {
 
   const background = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    ['#8CCFE8', '#5FA9C9', '#347BA4', '#123E67', '#062747']
+    [0, 0.35, 0.7, 1],
+    ['#0b3b66', '#082f59', '#052343', '#03162f']
   )
 
   return (
