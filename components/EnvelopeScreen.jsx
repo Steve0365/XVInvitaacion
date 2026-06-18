@@ -4,15 +4,18 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const bubbles = [
-  { size: 80, left: '10%', delay: 0 },
-  { size: 45, left: '25%', delay: 1 },
-  { size: 100, left: '45%', delay: 2 },
-  { size: 55, left: '70%', delay: 1.5 },
-  { size: 70, left: '85%', delay: 3 },
-  { size: 35, left: '60%', delay: 2.5 },
+  { size: 90, left: '8%', delay: 0 },
+  { size: 55, left: '18%', delay: 1 },
+  { size: 120, left: '35%', delay: 2 },
+  { size: 70, left: '52%', delay: 1.5 },
+  { size: 95, left: '68%', delay: 3 },
+  { size: 45, left: '80%', delay: 2.5 },
+  { size: 130, left: '90%', delay: 4 },
+  { size: 60, left: '25%', delay: 5 },
+  { size: 75, left: '60%', delay: 6 },
 ]
 
-const particles = Array.from({ length: 20 })
+const particles = Array.from({ length: 45 })
 
 export default function EnvelopeScreen({ onOpen }) {
   const [mounted, setMounted] = useState(false)
@@ -45,10 +48,32 @@ export default function EnvelopeScreen({ onOpen }) {
             {bubbles.map((b, i) => (
               <motion.div
                 key={i}
-                className="absolute rounded-full border border-[#E8C75A]/40 shadow-[0_0_12px_rgba(232,199,90,0.45)] bg-transparent backdrop-blur-sm"
-                style={{ width: b.size, height: b.size, left: b.left, bottom: '-10%' }}
-                animate={{ y: [0, -700], opacity: [0.2, 0.65, 0] }}
-                transition={{ duration: 10, delay: b.delay, repeat: Infinity, ease: 'linear' }}
+                className="
+                  absolute 
+                  rounded-full 
+                  border 
+                  border-[#f6dc7b]/80
+                  bg-transparent
+                  shadow-[0_0_18px_rgba(246,220,123,0.65)]
+                "
+                style={{
+                  width: b.size,
+                  height: b.size,
+                  left: b.left,
+                  bottom: '-5%',
+                }}
+                animate={{
+                  y: [0, -850],
+                  x: [0, 25, -25, 0],
+                  opacity: [0.45, 0.9, 0.45],
+                  scale: [1, 1.08, 1],
+                }}
+                transition={{
+                  duration: 12 + i,
+                  delay: b.delay,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
               />
             ))}
           </div>
@@ -58,7 +83,12 @@ export default function EnvelopeScreen({ onOpen }) {
             {particles.map((_, i) => (
               <motion.span
                 key={i}
-                className="absolute rounded-full bg-[#f6dc7b] shadow-[0_0_18px_#f6dc7b]"
+                className="
+absolute 
+rounded-full 
+bg-[#f6dc7b]
+shadow-[0_0_22px_#f6dc7b]
+"
                 style={{
                   width: i % 2 === 0 ? 5 : 3,
                   height: i % 2 === 0 ? 5 : 3,
