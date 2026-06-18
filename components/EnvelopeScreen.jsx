@@ -79,7 +79,7 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           {/* Sobre */}
-          <div className="relative w-[420px] h-[260px] flex items-center justify-center">
+          <div className="relative w-[420px] h-[260px]">
             <motion.div
               className="absolute inset-0 rounded-3xl border-2 border-[#f6dc7b] pointer-events-none"
               animate={{ opacity: [0.4, 1, 0.4], boxShadow: ['0 0 10px #f6dc7b', '0 0 35px #f6dc7b', '0 0 10px #f6dc7b'] }}
@@ -93,7 +93,7 @@ export default function EnvelopeScreen({ onOpen }) {
               onClick={() => handleOpen()}
             >
               <motion.div
-                className="absolute top-0 left-0 w-full h-[130px] origin-top z-20"
+                className="absolute top-0 left-0 w-full h-[130px] origin-top z-40"
                 style={{ background: '#a9ccdc', clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
                 animate={isOpen ? { rotateX: -180, y: -20 } : { rotateX: 0, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
@@ -108,24 +108,23 @@ isOpen
 {
  opacity:1,
  x:0,
- y:-150,
+ y:-190,
  scale:1
 }
 :
 {
  opacity:0,
  x:0,
- y:0,
+ y:40,
  scale:0.85
 }
 }
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className={`
-absolute 
-left-1/2 
-top-[42%]
+absolute
+left-1/2
+top-0
 -translate-x-1/2
--translate-y-1/2
 ${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}
 `}
             >
