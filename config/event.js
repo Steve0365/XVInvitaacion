@@ -3,13 +3,13 @@ const eventConfig = {
   heroSubtitle: 'Pool Side',
   themeName: 'Pool Side',
 
-  countdownDate: '2026-07-10T16:00:00-06:00',
+  countdownDate: '2026-07-12T15:30:00-06:00',
 
   event: {
-    date: '10 de Julio, 2026',
-    time: '4:00 - 10:00 PM',
+    date: '12 de Julio, 2026',
+    time: '3:30 - 10:00 PM',
     venue: 'Salón de Eventos',
-    address: 'Dirección aquí',
+    address: 'Ver ubicación en el mapa',
   },
 
   dressCode: {

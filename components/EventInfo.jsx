@@ -93,7 +93,7 @@ export default function EventInfo() {
           className="mt-10 text-center"
         >
           <a
-            href="https://maps.google.com"
+            href="https://maps.app.goo.gl/F2UBnQ64oerwfiA66?g_st=aw"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary group inline-flex"
