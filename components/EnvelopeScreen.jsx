@@ -101,10 +101,10 @@ export default function EnvelopeScreen({ onOpen }) {
             </motion.div>
 
             <motion.div
-              initial={{ opacity:0, x:0, y:0, scale:0.85 }}
+              initial={{ opacity:0, x:0, y:80, scale:0.85 }}
               animate={isOpen
 ? { opacity: 1, x: 0, y: -170, scale: 1 }
-: { opacity: 0, x: 0, y: 0, scale: 0.85 }}
+: { opacity: 0, x: 0, y: 80, scale: 0.85 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className={`absolute top-1/2 inset-x-0 mx-auto w-[340px] -translate-y-1/2 ${isOpen ? 'z-40 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}
             >
