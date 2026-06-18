@@ -79,7 +79,7 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           {/* Sobre */}
-          <div className="relative w-[420px] h-[260px]">
+          <div className="relative w-[420px] h-[260px] flex items-center justify-center">
             <motion.div
               className="absolute inset-0 rounded-3xl border-2 border-[#f6dc7b] pointer-events-none"
               animate={{ opacity: [0.4, 1, 0.4], boxShadow: ['0 0 10px #f6dc7b', '0 0 35px #f6dc7b', '0 0 10px #f6dc7b'] }}
@@ -87,13 +87,13 @@ export default function EnvelopeScreen({ onOpen }) {
             />
 
             <motion.div
-              className="relative w-full h-full rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] cursor-pointer z-10"
+              className="absolute inset-0 rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] overflow-hidden cursor-pointer z-20"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 5, repeat: Infinity }}
               onClick={() => handleOpen()}
             >
               <motion.div
-                className="absolute top-0 left-0 w-full h-[130px] origin-top z-40"
+                className="absolute top-0 left-0 w-full h-[130px] origin-top z-30 pointer-events-none"
                 style={{ background: '#a9ccdc', clipPath: 'polygon(0 0, 100% 0, 50% 100%)' }}
                 animate={isOpen ? { rotateX: -180, y: -20 } : { rotateX: 0, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeInOut' }}
@@ -102,32 +102,11 @@ export default function EnvelopeScreen({ onOpen }) {
 
             <motion.div
               initial={{ opacity:0, x:0, y:0, scale:0.85 }}
-              animate={
-isOpen
-?
-{
- opacity:1,
- x:0,
- y:-280,
- scale:1
-}
-:
-{
- opacity:0,
- x:0,
- y:0,
- scale:0.85
-}
-}
+              animate={isOpen
+? { opacity: 1, x: 0, y: -170, scale: 1 }
+: { opacity: 0, x: 0, y: 0, scale: 0.85 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className={`
-absolute
-left-1/2
-top-[80%]
--translate-x-1/2
--translate-y-1/2
-${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}
-`}
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${isOpen ? 'z-40 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}
             >
               <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[340px] max-w-[90%] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
                 <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,30px)] text-[#4b3527] mb-[clamp(8px,2vw,12px)]">
