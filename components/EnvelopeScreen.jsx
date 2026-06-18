@@ -3,12 +3,33 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const bubbles = Array.from({ length: 18 }, (_, i) => ({
-  size: Math.floor(Math.random() * 70) + 35,
-  left: `${Math.random() * 100}%`,
-  delay: i * 1.8,
-  duration: 14 + Math.random() * 8,
-}))
+function generateBubbles(count) {
+  const items = []
+  for (let i = 0; i < count; i++) {
+    let left, overlap
+    const size = Math.floor(Math.random() * 50) + 18
+    let attempts = 0
+    do {
+      left = Math.random() * 85
+      overlap = items.some(b => {
+        const d = Math.abs(left - parseFloat(b.left))
+        return d < (size + b.size) / 100 * 2
+      })
+      attempts++
+    } while (overlap && attempts < 20)
+    items.push({
+      size,
+      left: `${left}%`,
+      delay: i * 1.8,
+      duration: 18 + Math.random() * 12,
+      xOffset1: Math.random() * 40 - 20,
+      xOffset2: Math.random() * 60 - 30,
+    })
+  }
+  return items
+}
+
+const bubbles = generateBubbles(18)
 
 const particles = Array.from({ length: 55 }, (_, i) => ({
   delay: Math.random() * 8,
@@ -48,35 +69,40 @@ export default function EnvelopeScreen({ onOpen }) {
             {bubbles.map((b, i) => (
               <motion.div
                 key={i}
-                className="
-      absolute
-      rounded-full
-      border
-      border-[#f6dc7b]/60
-      bg-transparent
-      shadow-[0_0_15px_rgba(246,220,123,0.35)]
-      "
+                className="absolute rounded-full"
                 style={{
                   width: b.size,
                   height: b.size,
                   left: b.left,
                   bottom: '-120px',
+                  background: `
+                    radial-gradient(
+                      circle at 30% 30%,
+                      rgba(255,255,255,.18),
+                      rgba(248,216,106,.08) 45%,
+                      rgba(248,216,106,.03) 70%,
+                      transparent 100%
+                    )
+                  `,
+                  border: '2px solid rgba(248,216,106,.65)',
+                  boxShadow: `
+                    inset 4px 4px 10px rgba(255,255,255,.25),
+                    inset -4px -4px 10px rgba(248,216,106,.15),
+                    0 0 12px rgba(248,216,106,.25),
+                    0 0 20px rgba(248,216,106,.15)
+                  `,
                 }}
-                initial={{
-                  opacity: 0,
-                  scale: 0.6,
-                }}
+                initial={{ y: 0, x: 0, opacity: 0 }}
                 animate={{
-                  y: [0, -900],
-                  x: [0, 20, -15, 0],
-                  opacity: [0, 0.75, 0.55, 0],
-                  scale: [0.8, 1, 1.05, 0.9],
+                  y: [0, -2200],
+                  x: [0, b.xOffset1, b.xOffset2],
+                  opacity: [0, 0.9, 0.9, 0],
                 }}
                 transition={{
                   duration: b.duration,
                   delay: b.delay,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: 'linear',
                 }}
               />
             ))}
