@@ -87,7 +87,7 @@ export default function EnvelopeScreen({ onOpen }) {
             />
 
             <motion.div
-              className="relative w-full h-full rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] overflow-hidden cursor-pointer z-10"
+              className="relative w-full h-full rounded-3xl bg-[#b9d9e8] border border-white/30 shadow-[0_0_35px_rgba(255,215,80,0.35)] cursor-pointer z-10"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 5, repeat: Infinity }}
               onClick={() => handleOpen()}
@@ -108,14 +108,14 @@ isOpen
 {
  opacity:1,
  x:0,
- y:-190,
+ y:-280,
  scale:1
 }
 :
 {
  opacity:0,
  x:0,
- y:40,
+ y:0,
  scale:0.85
 }
 }
@@ -123,12 +123,13 @@ isOpen
               className={`
 absolute
 left-1/2
-top-0
+top-[80%]
 -translate-x-1/2
+-translate-y-1/2
 ${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}
 `}
             >
-              <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[360px] max-w-[90%] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
+              <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[340px] max-w-[90%] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
                 <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,30px)] text-[#4b3527] mb-[clamp(8px,2vw,12px)]">
                   ¡Bienvenidos!
                 </h3>
