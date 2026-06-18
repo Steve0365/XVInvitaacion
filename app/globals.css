@@ -374,3 +374,8 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 6px #e8c875, 0 0 12px rgba(232,200,117,0.3); }
+  50% { box-shadow: 0 0 20px #f5db8a, 0 0 40px rgba(232,200,117,0.6), 0 0 60px rgba(232,200,117,0.2); }
+}

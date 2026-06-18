@@ -12,8 +12,8 @@ export default function EnvelopeScreen({ onOpen }) {
   const handleOpen = useCallback(() => {
     if (phase !== 'idle') return
     setPhase('opening')
-    setTimeout(() => setPhase('done'), 3800)
-    setTimeout(() => onOpen(), 4500)
+    setTimeout(() => setPhase('done'), 5000)
+    setTimeout(() => onOpen(), 5600)
   }, [phase, onOpen])
 
   if (!mounted) return null
@@ -115,39 +115,53 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            className="relative w-[340px] h-[230px] cursor-pointer"
+            className="relative cursor-pointer"
+            style={{ width: 'clamp(300px, 82vw, 420px)', height: 'clamp(195px, 52vw, 270px)' }}
             onClick={handleOpen}
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <motion.div
-              className="absolute inset-0 rounded-xl overflow-hidden bg-[#163b5f] border border-[#E7D59B]"
-              animate={{
-                boxShadow: [
-                  "0 0 15px rgba(231,213,155,.3)",
-                  "0 0 45px rgba(231,213,155,.9)",
-                  "0 0 15px rgba(231,213,155,.3)"
-                ]
+            <div
+              className="absolute inset-0 rounded-[18px]"
+              style={{
+                border: '2px solid #e8c875',
+                animation: 'goldGlow 2s infinite',
               }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute bottom-0 left-0 w-full h-full border-b border-[#E7D59B]/70 rotate-[34deg] origin-bottom-left" />
-                <div className="absolute bottom-0 right-0 w-full h-full border-b border-[#E7D59B]/70 rotate-[-34deg] origin-bottom-right" />
-                <div className="absolute top-1/2 left-0 w-full border-t border-[#E7D59B]/40" />
-              </div>
+            />
 
+            <motion.div
+              className="absolute inset-0 rounded-[18px] overflow-hidden bg-[#163b5c]"
+              animate={phase !== 'idle' ? { scale: 1.08 } : { scale: 1 }}
+            >
               <motion.div
-                className="absolute top-0 left-0 w-full h-[55%] bg-[#214d73] origin-top border-b border-[#E7D59B]/60"
-                animate={phase !== 'idle' ? { rotateX: -170, opacity: .2 } : { rotateX: 0 }}
-                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-0 left-0 w-full origin-top z-[4]"
+                style={{
+                  height: '48%',
+                  background: '#204d72',
+                  clipPath: 'polygon(0 0, 50% 85%, 100% 0)',
+                }}
+                animate={phase !== 'idle' ? { rotateX: -180, opacity: 0 } : { rotateX: 0 }}
+                transition={{ duration: 1.8, ease: 'easeInOut' }}
               />
 
               {phase === 'idle' && (
                 <motion.div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-[#F4E3A1] to-[#B88A35] flex items-center justify-center text-[#123B63] text-4xl font-serif border-4 border-[#FFF2B8]"
-                  animate={{ scale: [1, 1.08, 1], rotate: [0, 3, -3, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute z-[6] flex items-center justify-center"
+                  style={{
+                    left: '50%', top: '50%',
+                    transform: 'translate(-50%,-50%)',
+                    width: 'clamp(64px, 18vw, 90px)',
+                    height: 'clamp(64px, 18vw, 90px)',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #fff0a8, #c99b3c)',
+                    boxShadow: '0 0 20px #e8c875',
+                    fontFamily: 'serif',
+                    fontSize: 'clamp(28px, 8vw, 40px)',
+                    color: '#173653',
+                  }}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.8 }}
                 >
                   H
                 </motion.div>
@@ -156,40 +170,34 @@ export default function EnvelopeScreen({ onOpen }) {
 
             {phase !== 'idle' && (
               <motion.div
-                initial={{ y: '105%' }}
-                animate={{ y: ['105%', '105%', '2%'] }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute overflow-hidden z-[2] rounded-[5px] text-center shadow-xl"
                 style={{
-                  position: 'absolute', top: '2%', left: '4%', right: '4%', bottom: '2%', zIndex: 1,
+                  width: 'clamp(255px, 70vw, 357px)',
+                  height: 'clamp(200px, 50vw, 260px)',
+                  left: 'clamp(22px, 6vw, 32px)',
+                  top: 'clamp(22px, 6vw, 30px)',
+                  background: '#fff7e8',
+                  padding: 'clamp(16px, 4vw, 30px)',
                 }}
+                initial={{ y: 0, opacity: 0 }}
+                animate={phase !== 'idle' ? { y: -180, opacity: 1 } : { y: 0, opacity: 0 }}
+                transition={{ duration: 2, delay: 0.8 }}
               >
-                <div style={{
-                  width: '100%', height: '100%', borderRadius: '3px',
-                  background: 'linear-gradient(160deg, #fcf9f2 0%, #f5f0e6 30%, #f0e8d8 60%, #f5efe5 100%)',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                  padding: 'clamp(14px, 4vw, 28px)',
-                }}>
-                  <div style={{
-                    position: 'absolute', top: 10, left: 10, right: 10, bottom: 10,
-                    border: '1px solid rgba(180, 160, 130, 0.1)', borderRadius: '2px', pointerEvents: 'none',
-                  }} />
-                  <h3 className="font-display font-bold text-center"
-                    style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(3px, 1.5vw, 6px)' }}>
-                    ¡Bienvenidos!
-                  </h3>
-                  <p className="text-center leading-relaxed"
-                    style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
-                     Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                  </p>
-                  <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(8px, 3vw, 16px) 0' }} />
-                  <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
-                    Hallie Aes
-                  </p>
-                  <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 1 }}>
-                    XV Años
-                  </p>
-                </div>
+                <h3 className="font-display font-bold"
+                  style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(6px, 2vw, 10px)' }}>
+                  ¡Bienvenidos!
+                </h3>
+                <p className="leading-relaxed mx-auto"
+                  style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
+                  Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                </p>
+                <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(10px, 3vw, 18px) auto' }} />
+                <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
+                  Hallie Aes
+                </p>
+                <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 2 }}>
+                  XV Años
+                </p>
               </motion.div>
             )}
           </motion.div>
