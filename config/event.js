@@ -32,7 +32,7 @@ const eventConfig = {
   music: {
     playlistTitle: "Hallie's Pool Side",
     playlistUrl: 'https://open.spotify.com/playlist/1Ef9ob9CiYLOCVtmGEjrcZ?si=tijuLodsRX2Llpq-6wvHWA&pt=9a8bccf508c2543b8598419bbec95ea1',
-    songUrl: 'https://docs.google.com/uc?export=download&id=1hBVWnnVxxjislgfd3bdvjQDuGqICsJBB',
+    songUrl: '/song.mp3',
   },
 
   rsvp: {
