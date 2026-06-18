@@ -115,7 +115,7 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            className="envelope cursor-pointer"
+            className={`envelope cursor-pointer ${phase !== 'idle' ? 'open' : ''}`}
             onClick={handleOpen}
             animate={
               phase !== 'idle'
@@ -128,15 +128,7 @@ export default function EnvelopeScreen({ onOpen }) {
                 : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
             }
           >
-            <motion.div
-              className="letter-card"
-              animate={
-                phase !== 'idle'
-                  ? { y: -90, opacity: 1, scale: 1 }
-                  : { y: 0, opacity: 0 }
-              }
-              transition={{ duration: 1.8, ease: 'easeInOut' }}
-            >
+            <div className="letter-card">
               <h3>¡Bienvenidos!</h3>
               <p>
                 Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
@@ -144,7 +136,7 @@ export default function EnvelopeScreen({ onOpen }) {
               <hr />
               <span className="name">Hallie Aes</span>
               <span className="xv">XV Años</span>
-            </motion.div>
+            </div>
 
             <div className="envelope-body">
               <span className="fold top"></span>

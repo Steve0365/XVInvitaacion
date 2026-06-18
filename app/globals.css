@@ -380,9 +380,9 @@ body {
   50% { box-shadow: 0 0 25px #f8df91; }
 }
 
-@keyframes lineGlow {
+@keyframes goldMove {
   0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; box-shadow: 0 0 12px #f5d982; }
+  50% { opacity: 1; box-shadow: 0 0 12px #f6db8a; }
 }
 
 .envelope {
@@ -413,36 +413,48 @@ body {
 
 .fold {
   position: absolute;
-  background: #e7c873;
   height: 2px;
-  opacity: .7;
-  animation: lineGlow 2.5s infinite;
+  background: #e7c873;
+  opacity: 0.7;
+  z-index: 2;
+  animation: goldMove 2.5s infinite;
 }
 
 .fold.top {
-  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: clamp(150px, 41vw, 215px) solid transparent;
+  border-right: clamp(150px, 41vw, 215px) solid transparent;
+  border-top: clamp(98px, 27vw, 140px) solid #e7c873;
+  background: none;
+  opacity: 0.5;
+  top: 0;
   left: 0;
-  width: 100%;
 }
 
 .fold.left {
-  width: clamp(160px, 44vw, 230px);
-  transform: rotate(35deg);
-  left: clamp(-18px, -5vw, -25px);
+  width: clamp(146px, 40vw, 210px);
   top: clamp(100px, 28vw, 145px);
+  left: clamp(7px, 2vw, 10px);
+  transform: rotate(35deg);
 }
 
 .fold.right {
-  width: clamp(160px, 44vw, 230px);
-  transform: rotate(-35deg);
-  right: clamp(-18px, -5vw, -25px);
+  width: clamp(146px, 40vw, 210px);
   top: clamp(100px, 28vw, 145px);
+  right: clamp(7px, 2vw, 10px);
+  transform: rotate(-35deg);
 }
 
 .fold.bottom {
-  bottom: clamp(38px, 10vw, 55px);
+  bottom: clamp(42px, 11vw, 60px);
   left: 0;
   width: 100%;
+}
+
+.envelope.open .fold {
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
 .flap {
@@ -459,20 +471,30 @@ body {
 
 .letter-card {
   position: absolute;
-  z-index: 10;
   width: clamp(250px, 69vw, 360px);
   height: clamp(175px, 48vw, 250px);
   left: clamp(24px, 6.6vw, 35px);
-  top: clamp(14px, 3.8vw, 20px);
+  top: clamp(18px, 4.8vw, 25px);
   background: #fff5df;
   padding: clamp(22px, 6vw, 35px);
   text-align: center;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0 15px 40px rgba(0,0,0,.25);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0) scale(0.95);
+  transition: opacity 0.5s ease, transform 1.5s ease, visibility 0.5s;
+}
+
+.envelope.open .letter-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-80px) scale(1);
 }
 
 .letter-card h3 {
