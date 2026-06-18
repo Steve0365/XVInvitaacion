@@ -34,12 +34,21 @@ html { scroll-behavior: smooth; }
 
 body {
   overflow-x: hidden;
+  overflow: hidden;
   color: white;
-  background:
-    linear-gradient(180deg, #07213f 0%, #0d3f70 40%, #1f6ba3 75%, #4aa8dd 100%);
+  background: #123b63;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bubbles-wrapper {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.bubbles-wrapper.show-page {
+  opacity: 1;
 }
 
 ::selection {
@@ -375,19 +384,9 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-@keyframes goldGlow {
-  0%, 100% { box-shadow: 0 0 8px #D4AF37, 0 0 15px #FFE9A6; }
-  50% { box-shadow: 0 0 20px #D4AF37, 0 0 35px #FFE9A6; }
-}
-
-@keyframes goldMove {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; box-shadow: 0 0 12px #FFE9A6; }
-}
-
-@keyframes letterOpen {
-  0% { transform: translateY(0); opacity: 0; }
-  100% { transform: translateY(-90px); opacity: 1; }
+@keyframes goldPulse {
+  0%,100% { box-shadow: 0 0 8px #D4AF37, 0 0 15px rgba(255,220,120,.5); }
+  50% { box-shadow: 0 0 20px #D4AF37, 0 0 40px rgba(255,220,120,.9); }
 }
 
 .envelope {
@@ -395,60 +394,23 @@ body {
   height: clamp(200px, 55vw, 290px);
   position: relative;
   perspective: 1200px;
-  border: 2px solid #D4AF37;
-  border-radius: 18px;
-  box-shadow: 0 0 8px #D4AF37, 0 0 18px #FFE9A6;
-  animation: goldGlow 3s infinite;
 }
 
 .envelope-body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #DDE8E8, #BFD4D9);
-  border-radius: 18px;
+  background: linear-gradient(135deg, #dce9e9, #bfd2d7);
+  border-radius: 20px;
+  border: 2px solid #D4AF37;
+  box-shadow: 0 0 10px #D4AF37, 0 0 25px rgba(255,220,120,.7);
+  animation: goldPulse 3s infinite;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,.25);
 }
 
-.fold {
-  position: absolute;
-  height: 2px;
-  background: #D4AF37;
-  opacity: 0.7;
-  z-index: 2;
-  animation: goldMove 2.5s infinite;
-}
-
-.fold.top {
-  width: 0;
-  height: 0;
-  border-left: clamp(150px, 41vw, 215px) solid transparent;
-  border-right: clamp(150px, 41vw, 215px) solid transparent;
-  border-top: clamp(98px, 27vw, 140px) solid #D4AF37;
-  background: none;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-}
-
-.fold.left {
-  width: clamp(146px, 40vw, 210px);
-  top: clamp(100px, 28vw, 145px);
-  left: clamp(7px, 2vw, 10px);
-  transform: rotate(35deg);
-}
-
-.fold.right {
-  width: clamp(146px, 40vw, 210px);
-  top: clamp(100px, 28vw, 145px);
-  right: clamp(7px, 2vw, 10px);
-  transform: rotate(-35deg);
-}
-
-.envelope.opened .fold {
-  opacity: 0;
-  transition: opacity 0.8s ease;
+.envelope.opened .envelope-body {
+  opacity: .15;
+  transition: opacity 1s ease;
 }
 
 .flap {
@@ -478,7 +440,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 2;
   opacity: 0;
   pointer-events: none;
   transform: translateY(0);
@@ -487,7 +449,9 @@ body {
 .envelope.opened .letter-card {
   opacity: 1;
   pointer-events: auto;
-  animation: letterOpen 2s ease forwards;
+  z-index: 5;
+  transform: translateY(-80px);
+  transition: all 1.5s ease;
 }
 
 .letter-card h3 {

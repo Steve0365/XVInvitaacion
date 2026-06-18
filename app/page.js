@@ -69,7 +69,9 @@ export default function Home() {
     <>
       {!showMain && <EnvelopeScreen onOpen={handleEnvelopeOpen} />}
 
-      <OceanBubbles />
+      <div className={`bubbles-wrapper ${showMain ? 'show-page' : ''}`}>
+        <OceanBubbles />
+      </div>
 
       <AnimatePresence>
         {showMain && (

@@ -139,10 +139,6 @@ export default function EnvelopeScreen({ onOpen }) {
             </div>
 
             <div className="envelope-body">
-              <span className="fold top"></span>
-              <span className="fold left"></span>
-              <span className="fold right"></span>
-
               <motion.div
                 className="flap"
                 animate={
