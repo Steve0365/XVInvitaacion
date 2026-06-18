@@ -115,91 +115,53 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            className="relative cursor-pointer"
-            style={{ width: 'clamp(300px, 82vw, 420px)', height: 'clamp(195px, 52vw, 270px)' }}
+            className="envelope cursor-pointer"
             onClick={handleOpen}
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={
+              phase !== 'idle'
+                ? { scale: 1.08, y: [0, 0, 0] }
+                : { scale: 1, y: [0, -8, 0] }
+            }
+            transition={
+              phase !== 'idle'
+                ? { duration: 0.4 }
+                : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+            }
           >
-            <div
-              className="absolute inset-0 rounded-[18px]"
-              style={{
-                border: '2px solid #e8c875',
-                animation: 'goldGlow 2s infinite',
-              }}
-            />
-
             <motion.div
-              className="absolute inset-0 rounded-[18px] overflow-hidden bg-[#163b5c]"
-              animate={phase !== 'idle' ? { scale: 1.08 } : { scale: 1 }}
+              className="letter-card"
+              animate={
+                phase !== 'idle'
+                  ? { y: -90, opacity: 1, scale: 1 }
+                  : { y: 0, opacity: 0 }
+              }
+              transition={{ duration: 1.8, ease: 'easeInOut' }}
             >
-              <motion.div
-                className="absolute top-0 left-0 w-full origin-top z-[4]"
-                style={{
-                  height: '48%',
-                  background: '#204d72',
-                  clipPath: 'polygon(0 0, 50% 85%, 100% 0)',
-                }}
-                animate={phase !== 'idle' ? { rotateX: -180, opacity: 0 } : { rotateX: 0 }}
-                transition={{ duration: 1.8, ease: 'easeInOut' }}
-              />
-
-              {phase === 'idle' && (
-                <motion.div
-                  className="absolute z-[6] flex items-center justify-center"
-                  style={{
-                    left: '50%', top: '50%',
-                    transform: 'translate(-50%,-50%)',
-                    width: 'clamp(64px, 18vw, 90px)',
-                    height: 'clamp(64px, 18vw, 90px)',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #fff0a8, #c99b3c)',
-                    boxShadow: '0 0 20px #e8c875',
-                    fontFamily: 'serif',
-                    fontSize: 'clamp(28px, 8vw, 40px)',
-                    color: '#173653',
-                  }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  H
-                </motion.div>
-              )}
+              <h3>¡Bienvenidos!</h3>
+              <p>
+                Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+              </p>
+              <hr />
+              <span className="name">Hallie Aes</span>
+              <span className="xv">XV Años</span>
             </motion.div>
 
-            {phase !== 'idle' && (
+            <div className="envelope-body">
+              <span className="fold top"></span>
+              <span className="fold left"></span>
+              <span className="fold right"></span>
+              <span className="fold bottom"></span>
+
               <motion.div
-                className="absolute overflow-hidden z-[2] rounded-[5px] text-center shadow-xl"
-                style={{
-                  width: 'clamp(255px, 70vw, 357px)',
-                  height: 'clamp(200px, 50vw, 260px)',
-                  left: 'clamp(22px, 6vw, 32px)',
-                  top: 'clamp(22px, 6vw, 30px)',
-                  background: '#fff7e8',
-                  padding: 'clamp(16px, 4vw, 30px)',
-                }}
-                initial={{ y: 0, opacity: 0 }}
-                animate={phase !== 'idle' ? { y: -180, opacity: 1 } : { y: 0, opacity: 0 }}
-                transition={{ duration: 2, delay: 0.8 }}
-              >
-                <h3 className="font-display font-bold"
-                  style={{ fontSize: 'clamp(16px, 5vw, 24px)', color: '#2c1810', marginBottom: 'clamp(6px, 2vw, 10px)' }}>
-                  ¡Bienvenidos!
-                </h3>
-                <p className="leading-relaxed mx-auto"
-                  style={{ fontSize: 'clamp(10px, 3vw, 13px)', color: '#7a5a44', maxWidth: '92%', fontWeight: 300, lineHeight: 1.6 }}>
-                  Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                </p>
-                <div style={{ width: '30%', height: 1, background: 'rgba(180, 160, 130, 0.3)', margin: 'clamp(10px, 3vw, 18px) auto' }} />
-                <p className="font-display font-bold" style={{ fontSize: 'clamp(14px, 4.5vw, 20px)', color: '#2c1810' }}>
-                  Hallie Aes
-                </p>
-                <p className="font-script" style={{ fontSize: 'clamp(12px, 3.5vw, 16px)', color: '#7a5a44', marginTop: 2 }}>
-                  XV Años
-                </p>
-              </motion.div>
-            )}
+                className="flap"
+                animate={
+                  phase !== 'idle'
+                    ? { rotateX: -170 }
+                    : { rotateX: 0 }
+                }
+                transition={{ duration: 1.7 }}
+              />
+            </div>
           </motion.div>
 
           {phase === 'idle' && (
