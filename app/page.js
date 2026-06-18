@@ -16,6 +16,7 @@ import Music from '../components/Music'
 import RSVP from '../components/RSVP'
 import Footer from '../components/Footer'
 import MusicPlayer from '../components/MusicPlayer'
+import DynamicBackground from '../components/DynamicBackground'
 
 const EnvelopeScreen = dynamic(
   () => import('../components/EnvelopeScreen'),
@@ -81,6 +82,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
             className="relative min-h-screen"
           >
+            <DynamicBackground />
             <Navbar />
             {sections.map(({ Component }, i) => (
               <motion.div

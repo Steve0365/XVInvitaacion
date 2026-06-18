@@ -25,32 +25,54 @@ export default function EnvelopeScreen({ onOpen }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(3px)' }}
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#4b86a8] via-[#376f96] to-[#245879]"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#6FA3BD] via-[#4C87A8] to-[#2F668C]"
         >
+          {/* Burbujas del sobre */}
           <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <motion.span
+            {Array.from({ length: 18 }).map((_, i) => (
+              <motion.div
                 key={i}
-                className="absolute rounded-full border border-white/20 bg-white/5"
+                className="absolute rounded-full border border-white/20 bg-white/10"
                 style={{
-                  width: `${30 + i * 8}px`,
-                  height: `${30 + i * 8}px`,
-                  left: `${10 + i * 11}%`,
+                  width: `${25 + (i % 5) * 12}px`,
+                  height: `${25 + (i % 5) * 12}px`,
+                  left: `${(i * 13) % 100}%`,
                 }}
-                animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.7, 0] }}
-                transition={{ duration: 18 + i * 2, repeat: Infinity, delay: i * 1.5, ease: 'linear' }}
+                animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.6, 0] }}
+                transition={{ duration: 18 + (i % 5) * 3, repeat: Infinity, delay: i * 0.8, ease: 'linear' }}
               />
             ))}
           </div>
 
+          {/* Ondas de agua */}
           <div className="absolute inset-0 pointer-events-none">
-            {[1, 2, 3].map((x) => (
+            {[1, 2, 3].map((wave) => (
               <motion.div
-                key={x}
-                className="absolute left-1/2 w-[140%] h-40 rounded-[50%] bg-yellow-200/10 blur-3xl"
-                style={{ top: `${20 * x}%` }}
-                animate={{ x: ['-10%', '10%', '-10%'] }}
-                transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+                key={wave}
+                className="absolute left-1/2 w-[160%] h-40 rounded-[50%] bg-[#FFE29A]/10 blur-3xl"
+                style={{ top: `${wave * 25}%` }}
+                animate={{ x: ['-8%', '8%', '-8%'] }}
+                transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: wave }}
+              />
+            ))}
+          </div>
+
+          {/* Brillo ambiental */}
+          <motion.div
+            className="absolute w-[600px] h-[600px] rounded-full bg-[#BFE8FF]/20 blur-3xl"
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+
+          {/* Partículas doradas */}
+          <div className="absolute inset-0 pointer-events-none">
+            {Array.from({ length: 25 }).map((_, i) => (
+              <motion.span
+                key={i}
+                className="absolute w-1 h-1 rounded-full bg-[#FFE29A] shadow-[0_0_12px_#FFE29A]"
+                style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+                animate={{ y: [0, -40, 0], opacity: [0, 0.8, 0], scale: [0.5, 1.5, 0.5] }}
+                transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.3 }}
               />
             ))}
           </div>

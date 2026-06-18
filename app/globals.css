@@ -35,8 +35,9 @@ html { scroll-behavior: smooth; }
 body {
   overflow-x: hidden;
   overflow-y: auto;
+  min-height: 100vh;
   color: white;
-  background: #123b63;
+  background: #8CCFE8;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
