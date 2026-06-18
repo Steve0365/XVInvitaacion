@@ -115,7 +115,7 @@ export default function EnvelopeScreen({ onOpen }) {
           />
 
           <motion.div
-            className={`envelope cursor-pointer ${phase !== 'idle' ? 'open' : ''}`}
+            className={`envelope cursor-pointer ${phase !== 'idle' ? 'opened' : ''}`}
             onClick={handleOpen}
             animate={
               phase !== 'idle'
@@ -142,7 +142,6 @@ export default function EnvelopeScreen({ onOpen }) {
               <span className="fold top"></span>
               <span className="fold left"></span>
               <span className="fold right"></span>
-              <span className="fold bottom"></span>
 
               <motion.div
                 className="flap"
