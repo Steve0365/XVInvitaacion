@@ -34,7 +34,7 @@ html { scroll-behavior: smooth; }
 
 body {
   overflow-x: hidden;
-  overflow: hidden;
+  overflow-y: auto;
   color: white;
   background: #123b63;
   font-family: 'Inter', sans-serif;
@@ -384,107 +384,11 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-@keyframes goldPulse {
-  0%,100% { box-shadow: 0 0 8px #D4AF37, 0 0 15px rgba(255,220,120,.5); }
-  50% { box-shadow: 0 0 20px #D4AF37, 0 0 40px rgba(255,220,120,.9); }
+@keyframes goldGlow {
+  0%,100% { box-shadow: 0 0 8px #D4AF37, 0 0 20px rgba(212,175,55,.4); }
+  50% { box-shadow: 0 0 20px #FFE9A6, 0 0 45px rgba(212,175,55,.8); }
 }
 
-.envelope {
-  width: clamp(300px, 82vw, 430px);
-  height: clamp(200px, 55vw, 290px);
-  position: relative;
-  perspective: 1200px;
-}
-
-.envelope-body {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #dce9e9, #bfd2d7);
-  border-radius: 20px;
-  border: 2px solid #D4AF37;
-  box-shadow: 0 0 10px #D4AF37, 0 0 25px rgba(255,220,120,.7);
-  animation: goldPulse 3s infinite;
-  overflow: hidden;
-}
-
-.envelope.opened .envelope-body {
-  opacity: .15;
-  transition: opacity 1s ease;
-}
-
-.flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: clamp(105px, 29vw, 150px);
-  background: #b8ced8;
-  clip-path: polygon(0 0, 50% 85%, 100% 0);
-  transform-origin: top;
-  z-index: 5;
-}
-
-.letter-card {
-  position: absolute;
-  width: clamp(250px, 69vw, 360px);
-  height: clamp(175px, 48vw, 250px);
-  left: clamp(24px, 6.6vw, 35px);
-  top: clamp(18px, 4.8vw, 25px);
-  background: #fff5df;
-  padding: clamp(22px, 6vw, 35px);
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 15px 40px rgba(0,0,0,.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(0);
-}
-
-.envelope.opened .letter-card {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 5;
-  transform: translateY(-80px);
-  transition: all 1.5s ease;
-}
-
-.letter-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(20px, 5.5vw, 30px);
-  color: #4b3527;
-  margin-bottom: clamp(6px, 2vw, 10px);
-}
-
-.letter-card p {
-  color: #765d4b;
-  line-height: 1.7;
-  font-size: clamp(10px, 2.8vw, 13px);
-  max-width: 96%;
-}
-
-.letter-card hr {
-  width: 30%;
-  border: none;
-  height: 1px;
-  background: rgba(180, 160, 130, 0.3);
-  margin: clamp(8px, 2vw, 14px) auto;
-}
-
-.letter-card .name {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: clamp(16px, 4.5vw, 24px);
-  color: #4b3527;
-}
-
-.letter-card .xv {
-  font-size: clamp(12px, 3vw, 16px);
-  color: #765d4b;
-  margin-top: 2px;
+.animate-goldGlow {
+  animation: goldGlow 4s infinite ease-in-out;
 }

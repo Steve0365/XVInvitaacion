@@ -25,130 +25,75 @@ export default function EnvelopeScreen({ onOpen }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(3px)' }}
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none"
-          style={{
-            background: 'linear-gradient(170deg, #123B63 0%, #1B4E7A 25%, #2D6F9E 45%, #1B4E7A 65%, #123B63 85%, #123B63 100%)',
-          }}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#4b86a8] via-[#376f96] to-[#245879]"
         >
           <div className="absolute inset-0 pointer-events-none">
-            <div
-              className="absolute top-0 left-1/4 w-72 h-[900px] blur-3xl rotate-12"
-              style={{ background: 'rgba(255,255,255,0.05)' }}
-            />
-            <div
-              className="absolute top-0 right-1/4 w-72 h-[900px] blur-3xl -rotate-12"
-              style={{ background: 'rgba(248,216,106,0.08)' }}
-            />
-            <div
-              className="absolute top-0 left-1/3 w-96 h-[1000px] blur-3xl"
-              style={{ background: 'rgba(255,255,255,0.04)' }}
-            />
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[700px] h-[700px] rounded-full blur-[120px]"
-              style={{ background: 'rgba(31,107,163,0.15)' }}
-            />
-            <motion.div
-              animate={{ opacity: [0.04, 0.09, 0.04] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(41,141,148,0.25), transparent 70%)', filter: 'blur(60px)' }}
-            />
-            <motion.div
-              animate={{ opacity: [0.03, 0.07, 0.03] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(41,141,148,0.2), transparent 70%)', filter: 'blur(80px)' }}
-            />
-            <motion.div
-              animate={{ opacity: [0.02, 0.06, 0.02] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-              className="absolute top-1/2 left-1/2 w-[200px] h-[200px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(242,216,141,0.1), transparent 60%)', filter: 'blur(50px)' }}
-            />
-            {Array.from({ length: 14 }).map((_, i) => (
-              <motion.div
+            {Array.from({ length: 8 }).map((_, i) => (
+              <motion.span
                 key={i}
-                className="absolute rounded-full"
+                className="absolute rounded-full border border-white/20 bg-white/5"
                 style={{
-                  width: `${6 + Math.random() * 10}px`,
-                  height: `${6 + Math.random() * 10}px`,
-                  left: `${Math.random() * 100}%`,
-                  background: 'radial-gradient(circle, rgba(248,216,106,.9), rgba(248,216,106,0))',
-                  filter: 'blur(2px)',
+                  width: `${30 + i * 8}px`,
+                  height: `${30 + i * 8}px`,
+                  left: `${10 + i * 11}%`,
                 }}
-                initial={{ y: '110vh', opacity: 0 }}
-                animate={{ y: '-20vh', opacity: [0, 0.6, 0] }}
-                transition={{ duration: 12 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 10 }}
+                animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.7, 0] }}
+                transition={{ duration: 18 + i * 2, repeat: Infinity, delay: i * 1.5, ease: 'linear' }}
               />
             ))}
-            <motion.div
-              className="absolute left-[18%] top-[25%] w-20 h-20 rounded-full"
-              style={{ border: '1px solid rgba(248,216,106,.25)', backdropFilter: 'blur(4px)' }}
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 7, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute right-[18%] top-[20%] w-14 h-14 rounded-full"
-              style={{ border: '1px solid rgba(248,216,106,.25)' }}
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute right-[22%] bottom-[20%] w-10 h-10 rounded-full"
-              style={{ border: '1px solid rgba(248,216,106,.3)' }}
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
+          </div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            {[1, 2, 3].map((x) => (
+              <motion.div
+                key={x}
+                className="absolute left-1/2 w-[140%] h-40 rounded-[50%] bg-yellow-200/10 blur-3xl"
+                style={{ top: `${20 * x}%` }}
+                animate={{ x: ['-10%', '10%', '-10%'] }}
+                transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            ))}
           </div>
 
           <motion.div
-            className="absolute left-1/2 top-1/2"
-            style={{
-              width: '650px', height: '650px',
-              transform: 'translate(-50%, -50%)',
-              borderRadius: '9999px',
-              background: 'radial-gradient(circle, rgba(31,107,163,.22), transparent 70%)',
-              filter: 'blur(90px)',
-            }}
-            animate={{ scale: [1, 1.08, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          <motion.div
-            className={`envelope cursor-pointer ${phase !== 'idle' ? 'opened' : ''}`}
             onClick={handleOpen}
-            animate={
-              phase !== 'idle'
-                ? { scale: 1.08, y: [0, 0, 0] }
-                : { scale: 1, y: [0, -8, 0] }
-            }
-            transition={
-              phase !== 'idle'
-                ? { duration: 0.4 }
-                : { duration: 4, repeat: Infinity, ease: 'easeInOut' }
-            }
+            animate={{ scale: phase !== 'idle' ? 0.95 : 1 }}
+            className="relative w-[clamp(300px,82vw,430px)] h-[clamp(195px,52vw,280px)] cursor-pointer rounded-2xl bg-[#d6e5e8] border-2 border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,.6)] animate-goldGlow z-20"
           >
-            <div className="letter-card">
-              <h3>¡Bienvenidos!</h3>
-              <p>
-                Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-              </p>
-              <hr />
-              <span className="name">Hallie Aes</span>
-              <span className="xv">XV Años</span>
-            </div>
-
-            <div className="envelope-body">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
               <motion.div
-                className="flap"
-                animate={
-                  phase !== 'idle'
-                    ? { rotateX: -170 }
-                    : { rotateX: 0 }
-                }
+                className="absolute top-0 left-0 w-full origin-top z-[5]"
+                style={{
+                  height: '48%',
+                  background: '#b8ced8',
+                  clipPath: 'polygon(0 0, 50% 85%, 100% 0)',
+                }}
+                animate={phase !== 'idle' ? { rotateX: -170 } : { rotateX: 0 }}
                 transition={{ duration: 1.7 }}
               />
             </div>
+
+            <AnimatePresence>
+              {phase !== 'idle' && (
+                <motion.div
+                  initial={{ y: 0, opacity: 0 }}
+                  animate={{ y: -80, opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5 }}
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[clamp(250px,69vw,360px)] h-[clamp(175px,48vw,240px)] bg-[#fff5df] rounded-lg shadow-xl p-[clamp(22px,6vw,32px)] text-center z-30 flex flex-col items-center justify-center"
+                >
+                  <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,28px)] text-[#4b3527] mb-[clamp(6px,2vw,10px)]">
+                    ¡Bienvenidos!
+                  </h3>
+                  <p className="text-[clamp(10px,2.8vw,13px)] text-[#765d4b] leading-relaxed max-w-[96%]">
+                    Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                  </p>
+                  <hr className="w-[30%] border-none h-[1px] bg-[rgba(180,160,130,0.3)] my-[clamp(8px,2vw,14px)]" />
+                  <span className="font-serif font-bold text-[clamp(16px,4.5vw,22px)] text-[#4b3527]">Hallie Aes</span>
+                  <span className="text-[clamp(12px,3vw,15px)] text-[#765d4b] mt-[2px]">XV Años</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {phase === 'idle' && (
@@ -160,12 +105,7 @@ export default function EnvelopeScreen({ onOpen }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleOpen}
-                className="mt-8 px-10 py-3.5 rounded-full font-semibold text-sm uppercase tracking-[0.3em] transition-all duration-500"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(41,141,148,0.12), rgba(228,199,107,0.06))',
-                  border: '1px solid rgba(41,141,148,0.2)',
-                  color: 'rgba(200,235,237,0.9)',
-                }}
+                className="mt-8 z-40 px-8 py-3 rounded-full bg-[#D4AF37] text-white font-medium shadow-lg text-sm uppercase tracking-[0.2em]"
               >
                 Abrir Invitación
               </motion.button>
@@ -173,8 +113,7 @@ export default function EnvelopeScreen({ onOpen }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3, duration: 1 }}
-                className="absolute bottom-8 text-[10px] tracking-[0.4em] uppercase"
-                style={{ color: 'rgba(255,255,255,0.5)' }}
+                className="absolute bottom-8 text-[10px] tracking-[0.4em] uppercase text-white/50"
               >
                 Presiona para abrir
               </motion.p>
