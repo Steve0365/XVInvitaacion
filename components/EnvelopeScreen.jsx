@@ -45,7 +45,7 @@ export default function EnvelopeScreen({ onOpen }) {
             {bubbles.map((b, i) => (
               <motion.div
                 key={i}
-                className="absolute rounded-full border border-white/40 bg-white/10 backdrop-blur-sm shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                className="absolute rounded-full border border-[#E8C75A]/40 shadow-[0_0_12px_rgba(232,199,90,0.45)] bg-transparent backdrop-blur-sm"
                 style={{ width: b.size, height: b.size, left: b.left, bottom: '-10%' }}
                 animate={{ y: [0, -700], opacity: [0.2, 0.65, 0] }}
                 transition={{ duration: 10, delay: b.delay, repeat: Infinity, ease: 'linear' }}
@@ -102,9 +102,9 @@ export default function EnvelopeScreen({ onOpen }) {
 
             <motion.div
               initial={{ opacity: 0, y: 80, scale: 0.85 }}
-              animate={isOpen ? { opacity: 1, y: -170, scale: 1 } : { opacity: 0, y: 80, scale: 0.85 }}
+              animate={isOpen ? { opacity: 1, x: 0, y: -120, scale: 1 } : { opacity: 0, x: 0, y: 0, scale: 0.85 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className={`absolute left-1/2 top-1/2 -translate-x-1/2 ${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}`}
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${isOpen ? 'z-30 pointer-events-auto' : 'z-0 pointer-events-none'}`}
             >
               <div className="bg-[#fff8eb] rounded-xl shadow-xl w-[clamp(280px,75vw,380px)] p-[clamp(24px,6vw,40px)] min-h-[clamp(200px,50vw,430px)] flex flex-col items-center justify-center text-center">
                 <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,30px)] text-[#4b3527] mb-[clamp(8px,2vw,12px)]">
