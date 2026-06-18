@@ -3,6 +3,18 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const bubbles = [
+  { x: '10%', y: '80%', size: 70, delay: 0 },
+  { x: '25%', y: '60%', size: 40, delay: 1 },
+  { x: '45%', y: '75%', size: 90, delay: 2 },
+  { x: '70%', y: '40%', size: 55, delay: 0.5 },
+  { x: '85%', y: '70%', size: 80, delay: 1.5 },
+  { x: '60%', y: '20%', size: 35, delay: 2.5 },
+  { x: '15%', y: '30%', size: 45, delay: 3 },
+]
+
+const goldenParticles = Array.from({ length: 18 })
+
 export default function EnvelopeScreen({ onOpen }) {
   const [mounted, setMounted] = useState(false)
   const [phase, setPhase] = useState('idle')
@@ -25,64 +37,58 @@ export default function EnvelopeScreen({ onOpen }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(3px)' }}
           transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#6FA3BD] via-[#4C87A8] to-[#2F668C]"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none bg-gradient-to-b from-[#7bb7d9] via-[#4f91b7] to-[#245477]"
         >
-          {/* Burbujas del sobre */}
+          {/* Burbujas */}
           <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 18 }).map((_, i) => (
+            {bubbles.map((b, i) => (
               <motion.div
                 key={i}
-                className="absolute rounded-full border border-white/20 bg-white/10"
-                style={{
-                  width: `${25 + (i % 5) * 12}px`,
-                  height: `${25 + (i % 5) * 12}px`,
-                  left: `${(i * 13) % 100}%`,
-                }}
-                animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.6, 0] }}
-                transition={{ duration: 18 + (i % 5) * 3, repeat: Infinity, delay: i * 0.8, ease: 'linear' }}
+                className="absolute rounded-full border border-white/20 bg-white/5 backdrop-blur-sm"
+                style={{ width: b.size, height: b.size, left: b.x, top: b.y }}
+                animate={{ y: [0, -120, 0], opacity: [0.15, 0.5, 0.15], scale: [1, 1.15, 1] }}
+                transition={{ duration: 8, delay: b.delay, repeat: Infinity, ease: 'easeInOut' }}
               />
             ))}
           </div>
 
-          {/* Ondas de agua */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[1, 2, 3].map((wave) => (
-              <motion.div
-                key={wave}
-                className="absolute left-1/2 w-[160%] h-40 rounded-[50%] bg-[#FFE29A]/10 blur-3xl"
-                style={{ top: `${wave * 25}%` }}
-                animate={{ x: ['-8%', '8%', '-8%'] }}
-                transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: wave }}
-              />
-            ))}
-          </div>
-
-          {/* Brillo ambiental */}
+          {/* Onda tipo agua */}
           <motion.div
-            className="absolute w-[600px] h-[600px] rounded-full bg-[#BFE8FF]/20 blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute bottom-0 left-0 w-full h-40 bg-white/10 rounded-[50%] blur-3xl pointer-events-none"
+            animate={{ x: ['-10%', '10%', '-10%'] }}
+            transition={{ duration: 12, repeat: Infinity }}
           />
 
           {/* Partículas doradas */}
           <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 25 }).map((_, i) => (
+            {goldenParticles.map((_, i) => (
               <motion.span
                 key={i}
-                className="absolute w-1 h-1 rounded-full bg-[#FFE29A] shadow-[0_0_12px_#FFE29A]"
+                className="absolute w-1 h-1 rounded-full bg-[#f5d77a] shadow-[0_0_15px_#f5d77a]"
                 style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
-                animate={{ y: [0, -40, 0], opacity: [0, 0.8, 0], scale: [0.5, 1.5, 0.5] }}
-                transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.3 }}
+                animate={{ opacity: [0, 1, 0], scale: [0.5, 1.8, 0.5], y: [0, -80] }}
+                transition={{ duration: 5 + Math.random() * 5, repeat: Infinity, delay: i }}
               />
             ))}
           </div>
 
+          {/* Sobre */}
           <motion.div
+            className="relative z-20"
             onClick={handleOpen}
-            animate={{ scale: phase !== 'idle' ? 0.95 : 1 }}
-            className="relative w-[clamp(300px,82vw,430px)] h-[clamp(195px,52vw,280px)] cursor-pointer rounded-2xl bg-[#d6e5e8] border-2 border-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,.6)] animate-goldGlow z-20"
           >
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+            {/* Borde dorado luminoso */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl border-2 border-[#f6dc7b] pointer-events-none"
+              animate={{ opacity: [0.4, 1, 0.4], boxShadow: ['0 0 10px #f6dc7b', '0 0 35px #f6dc7b', '0 0 10px #f6dc7b'] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+
+            <motion.div
+              className="relative w-[clamp(300px,75vw,390px)] h-[clamp(195px,48vw,250px)] rounded-3xl bg-[#d5edf5]/70 backdrop-blur-xl border border-white/40 shadow-[0_25px_70px_rgba(0,0,0,0.25)] overflow-hidden cursor-pointer"
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            >
               <motion.div
                 className="absolute top-0 left-0 w-full origin-top z-[5]"
                 style={{
@@ -93,29 +99,29 @@ export default function EnvelopeScreen({ onOpen }) {
                 animate={phase !== 'idle' ? { rotateX: -170 } : { rotateX: 0 }}
                 transition={{ duration: 1.7 }}
               />
-            </div>
 
-            <AnimatePresence>
-              {phase !== 'idle' && (
-                <motion.div
-                  initial={{ y: 0, opacity: 0 }}
-                  animate={{ y: -80, opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1.5 }}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[clamp(250px,69vw,360px)] h-[clamp(175px,48vw,240px)] bg-[#fff5df] rounded-lg shadow-xl p-[clamp(22px,6vw,32px)] text-center z-30 flex flex-col items-center justify-center"
-                >
-                  <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,28px)] text-[#4b3527] mb-[clamp(6px,2vw,10px)]">
-                    ¡Bienvenidos!
-                  </h3>
-                  <p className="text-[clamp(10px,2.8vw,13px)] text-[#765d4b] leading-relaxed max-w-[96%]">
-                    Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
-                  </p>
-                  <hr className="w-[30%] border-none h-[1px] bg-[rgba(180,160,130,0.3)] my-[clamp(8px,2vw,14px)]" />
-                  <span className="font-serif font-bold text-[clamp(16px,4.5vw,22px)] text-[#4b3527]">Hallie Aes</span>
-                  <span className="text-[clamp(12px,3vw,15px)] text-[#765d4b] mt-[2px]">XV Años</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <AnimatePresence>
+                {phase !== 'idle' && (
+                  <motion.div
+                    initial={{ y: 0, opacity: 0 }}
+                    animate={{ y: -80, opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5 }}
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[clamp(250px,69vw,330px)] h-[clamp(175px,48vw,220px)] bg-[#fff5df] rounded-lg shadow-xl p-[clamp(22px,6vw,32px)] text-center z-30 flex flex-col items-center justify-center"
+                  >
+                    <h3 className="font-serif font-bold text-[clamp(20px,5.5vw,28px)] text-[#4b3527] mb-[clamp(6px,2vw,10px)]">
+                      ¡Bienvenidos!
+                    </h3>
+                    <p className="text-[clamp(10px,2.8vw,13px)] text-[#765d4b] leading-relaxed max-w-[96%]">
+                      Los espero en mi Pool Side para celebrar juntos este día tan especial. Su presencia hará de este momento un recuerdo inolvidable.
+                    </p>
+                    <hr className="w-[30%] border-none h-[1px] bg-[rgba(180,160,130,0.3)] my-[clamp(8px,2vw,14px)]" />
+                    <span className="font-serif font-bold text-[clamp(16px,4.5vw,22px)] text-[#4b3527]">Hallie Aes</span>
+                    <span className="text-[clamp(12px,3vw,15px)] text-[#765d4b] mt-[2px]">XV Años</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           </motion.div>
 
           {phase === 'idle' && (
@@ -124,10 +130,10 @@ export default function EnvelopeScreen({ onOpen }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.08, backgroundColor: 'rgba(255,255,255,0.18)' }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleOpen}
-                className="mt-8 z-40 px-8 py-3 rounded-full bg-[#D4AF37] text-white font-medium shadow-lg text-sm uppercase tracking-[0.2em]"
+                className="mt-10 z-40 px-10 py-4 rounded-full bg-white/10 backdrop-blur-xl border border-white/30 text-white tracking-[4px] shadow-lg text-sm uppercase"
               >
                 Abrir Invitación
               </motion.button>
