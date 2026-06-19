@@ -8,7 +8,7 @@ const eventConfig = {
   event: {
     date: '12 de Julio, 2026',
     time: '3:30 - 10:00 PM',
-    venue: 'Salón de Eventos',
+    venue: 'Salón la Finca',
     address: 'Ver ubicación en el mapa',
   },
 
