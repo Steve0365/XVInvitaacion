@@ -15,7 +15,7 @@ const eventConfig = {
   dressCode: {
     title: 'Cóctel',
     description: 'Viste elegante pero fresca para una tarde de piscina.',
-    note: 'Evitar colores azules y tonos fuertes.',
+    note: 'Evitar colores azules y dorados',
   },
 
   specialMessage: {

@@ -8,7 +8,7 @@ const colors = [
   { hex: '#A8B8A0', name: 'Verde Salvia' },
   { hex: '#C9DDE0', name: 'Azul Perla' },
   { hex: '#EFE4CF', name: 'Marfil' },
-  { hex: '#E7D59B', name: 'Dorado' },
+  { hex: '#E7D59B', name: 'Beige' },
 ]
 
 export default function DressCode() {
@@ -43,9 +43,12 @@ export default function DressCode() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,255,255,0.02)] to-transparent pointer-events-none" />
           <div className="relative">
-            <p className="text-white/50 text-[10px] uppercase tracking-[0.3em] text-center mb-8 font-medium">
+            <p className="text-white/50 text-[10px] uppercase tracking-[0.3em] text-center mb-6 font-medium">
               {eventConfig.dressCode.note}
             </p>
+            <h3 className="text-white/80 text-lg md:text-xl font-display font-semibold text-center mb-8">
+              Colores sugeridos
+            </h3>
             <div className="flex flex-wrap justify-center gap-6 md:gap-8">
               {colors.map((color, index) => (
                 <motion.div
