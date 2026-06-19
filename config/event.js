@@ -20,9 +20,10 @@ const eventConfig = {
 
   specialMessage: {
     title: 'Un Mensaje Especial',
-    from: 'Hallie',
+    from: 'Hallie Aes',
     content:
-      'Estoy muy feliz de que me acompañes en este día tan especial para mí. Cada momento vivido me ha traído hasta aquí, y tenerte a mi lado lo hace aún más significativo. Gracias por ser parte de mi historia. Sol, música, alberca y mucha diversión. Y ahí te espero.',
+      'Estoy muy feliz de que me acompañes en este día tan especial para mí. Cada momento vivido me ha traído hasta aquí, y tenerte a mi lado lo hace aún más significativo. Gracias por ser parte de mi historia. Habrá sol, música, alberca y mucha diversión.',
+    highlight: '¡Ahí te espero!',
   },
 
   gallery: {

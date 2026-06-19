@@ -47,6 +47,19 @@ export default function SpecialMessage() {
               &ldquo;{eventConfig.specialMessage.content}&rdquo;
             </motion.p>
 
+            {eventConfig.specialMessage.highlight && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-center mt-6 text-lg md:text-xl font-bold tracking-wide"
+                style={{ color: 'rgba(228, 199, 107, 0.8)' }}
+              >
+                {eventConfig.specialMessage.highlight}
+              </motion.p>
+            )}
+
             <motion.div
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
