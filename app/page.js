@@ -52,6 +52,9 @@ const sections = [
 export default function Home() {
   const [ready, setReady] = useState(false)
   const [showMain, setShowMain] = useState(false)
+  const [scrollDirection, setScrollDirection] = useState("down")
+  const [showScrollButton, setShowScrollButton] = useState(true)
+  const [nearRSVP, setNearRSVP] = useState(false)
 
   useEffect(() => { setReady(true) }, [])
 
@@ -63,6 +66,42 @@ export default function Home() {
     document.body.style.overflow = showMain ? '' : 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [showMain])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      const windowHeight = window.innerHeight
+      const fullHeight = document.documentElement.scrollHeight
+
+      if (scrollTop <= 50) {
+        setScrollDirection("down")
+      } else if (scrollTop + windowHeight >= fullHeight - 80) {
+        setScrollDirection("up")
+      }
+
+      if (
+        (scrollTop <= 50 && scrollDirection === "up") ||
+        (scrollTop + windowHeight >= fullHeight - 80 && scrollDirection === "down")
+      ) {
+        setShowScrollButton(false)
+      } else {
+        setShowScrollButton(true)
+      }
+
+      const rsvp = document.getElementById("rsvp")
+      if (rsvp) {
+        const position = rsvp.getBoundingClientRect()
+        if (position.top < windowHeight * 0.8) {
+          setNearRSVP(true)
+        } else {
+          setNearRSVP(false)
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [scrollDirection])
 
   if (!ready) return null
 
@@ -84,39 +123,6 @@ export default function Home() {
           >
             <DynamicBackground />
             <Navbar />
-            {/* Flecha de navegación */}
-            <motion.button
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ 
-                opacity: 1,
-                x: 0
-              }}
-              transition={{
-                duration: 1,
-                delay: 2
-              }}
-              onClick={() => {
-                window.scrollBy({
-                  top: window.innerHeight,
-                  behavior: "smooth"
-                })
-              }}
-              className="fixed right-5 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-[#f6dc7b] shadow-[0_0_20px_rgba(246,220,123,0.45)]"
-            >
-              <motion.span
-                animate={{
-                  y:[0,8,0]
-                }}
-                transition={{
-                  duration:1.8,
-                  repeat:Infinity,
-                  ease:"easeInOut"
-                }}
-                className="text-2xl"
-              >
-                ↓
-              </motion.span>
-            </motion.button>
             {sections.map(({ Component }, i) => (
               <motion.div
                 key={i}
@@ -129,6 +135,45 @@ export default function Home() {
               </motion.div>
             ))}
             <MusicPlayer />
+
+            <AnimatePresence>
+              {showScrollButton && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.5, x: 30 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, x: 30 }}
+                  transition={{ duration: 0.5 }}
+                  onClick={() => {
+                    window.scrollBy({
+                      top: scrollDirection === "down" ? window.innerHeight : -window.innerHeight,
+                      behavior: "smooth"
+                    })
+                  }}
+                  className="fixed right-5 top-1/2 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 shadow-[0_0_25px_rgba(246,220,123,.45)]"
+                >
+                  <motion.div
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 1.8, repeat: Infinity }}
+                    className="text-[#f6dc7b] text-xl"
+                  >
+                    {scrollDirection === "down" ? "↓" : "↑"}
+                  </motion.div>
+                </motion.button>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {nearRSVP && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className="fixed right-5 bottom-28 z-50 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/40 text-white text-xs shadow-lg"
+                >
+                  ✨ Confirma tu asistencia
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.main>
         )}
       </AnimatePresence>
