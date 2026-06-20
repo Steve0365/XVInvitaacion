@@ -28,7 +28,7 @@ export default function GiftSuggestion() {
           <div className="text-5xl mb-5">🎁</div>
 
           <h2 className="text-3xl font-serif text-white mb-5">
-            Un detalle especial
+            Sugerencia de regalo
           </h2>
 
           <p className="text-white/80 leading-relaxed">
