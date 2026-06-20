@@ -121,21 +121,17 @@ export default function Home() {
             <MusicPlayer />
 
             <AnimatePresence>
-              {showBottomArrow && (
+              {nearRSVP && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.9 }}
                   onClick={() => {
-                    if (nearRSVP) {
-                      document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" })
-                    } else {
-                      window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
-                    }
+                    document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" })
                   }}
-                  className="fixed right-4 bottom-28 z-50 px-5 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-white text-sm shadow-lg cursor-pointer"
+                  className="fixed right-5 bottom-28 z-50 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-white text-sm tracking-wide shadow-[0_0_25px_rgba(246,220,123,.45)] cursor-pointer"
                 >
-                  {nearRSVP ? "✨ Confirmar asistencia" : "↓ Explorar"}
+                  ✨ Confirma tu asistencia
                 </motion.div>
               )}
             </AnimatePresence>
@@ -164,11 +160,7 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 0.5, x: 20 }}
                     onClick={() => {
-                      if (nearRSVP) {
-                        document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" })
-                      } else {
-                        window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
-                      }
+                      window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
                     }}
                     className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-[#f6dc7b] shadow-[0_0_18px_rgba(246,220,123,.4)]"
                   >
