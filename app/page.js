@@ -52,8 +52,8 @@ const sections = [
 export default function Home() {
   const [ready, setReady] = useState(false)
   const [showMain, setShowMain] = useState(false)
-  const [scrollDirection, setScrollDirection] = useState("down")
-  const [showScrollButton, setShowScrollButton] = useState(true)
+  const [showTopArrow, setShowTopArrow] = useState(false)
+  const [showBottomArrow, setShowBottomArrow] = useState(true)
   const [nearRSVP, setNearRSVP] = useState(false)
 
   useEffect(() => { setReady(true) }, [])
@@ -70,38 +70,22 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const windowHeight = window.innerHeight
-      const fullHeight = document.documentElement.scrollHeight
+      const screen = window.innerHeight
+      const height = document.documentElement.scrollHeight
 
-      if (scrollTop <= 50) {
-        setScrollDirection("down")
-      } else if (scrollTop + windowHeight >= fullHeight - 80) {
-        setScrollDirection("up")
-      }
-
-      if (
-        (scrollTop <= 50 && scrollDirection === "up") ||
-        (scrollTop + windowHeight >= fullHeight - 80 && scrollDirection === "down")
-      ) {
-        setShowScrollButton(false)
-      } else {
-        setShowScrollButton(true)
-      }
+      setShowTopArrow(scrollTop > 150)
+      setShowBottomArrow(scrollTop + screen < height - 150)
 
       const rsvp = document.getElementById("rsvp")
       if (rsvp) {
-        const position = rsvp.getBoundingClientRect()
-        if (position.top < windowHeight * 0.8) {
-          setNearRSVP(true)
-        } else {
-          setNearRSVP(false)
-        }
+        const pos = rsvp.getBoundingClientRect()
+        setNearRSVP(pos.top < screen * 0.75)
       }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [scrollDirection])
+  }, [])
 
   if (!ready) return null
 
@@ -137,43 +121,62 @@ export default function Home() {
             <MusicPlayer />
 
             <AnimatePresence>
-              {showScrollButton && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.5, x: 30 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.5, x: 30 }}
-                  transition={{ duration: 0.5 }}
-                  onClick={() => {
-                    window.scrollBy({
-                      top: scrollDirection === "down" ? window.innerHeight : -window.innerHeight,
-                      behavior: "smooth"
-                    })
-                  }}
-                  className="fixed right-5 top-1/2 z-50 w-14 h-14 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 shadow-[0_0_25px_rgba(246,220,123,.45)]"
-                >
-                  <motion.div
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{ duration: 1.8, repeat: Infinity }}
-                    className="text-[#f6dc7b] text-xl"
-                  >
-                    {scrollDirection === "down" ? "↓" : "↑"}
-                  </motion.div>
-                </motion.button>
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {nearRSVP && (
+              {showBottomArrow && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  className="fixed right-5 bottom-28 z-50 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/40 text-white text-xs shadow-lg"
+                  onClick={() => {
+                    if (nearRSVP) {
+                      document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" })
+                    } else {
+                      window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+                    }
+                  }}
+                  className="fixed right-4 bottom-28 z-50 px-5 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-white text-sm shadow-lg cursor-pointer"
                 >
-                  ✨ Confirma tu asistencia
+                  {nearRSVP ? "✨ Confirmar asistencia" : "↓ Explorar"}
                 </motion.div>
               )}
             </AnimatePresence>
+
+            <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
+              <AnimatePresence>
+                {showTopArrow && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.5, x: 20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.5, x: 20 }}
+                    onClick={() => {
+                      window.scrollBy({ top: -window.innerHeight, behavior: "smooth" })
+                    }}
+                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-[#f6dc7b] shadow-[0_0_18px_rgba(246,220,123,.4)]"
+                  >
+                    ↑
+                  </motion.button>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {showBottomArrow && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.5, x: 20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.5, x: 20 }}
+                    onClick={() => {
+                      if (nearRSVP) {
+                        document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" })
+                      } else {
+                        window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+                      }
+                    }}
+                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-[#f6dc7b] shadow-[0_0_18px_rgba(246,220,123,.4)]"
+                  >
+                    ↓
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.main>
         )}
       </AnimatePresence>
