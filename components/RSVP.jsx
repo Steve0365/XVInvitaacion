@@ -183,7 +183,7 @@ export default function RSVP() {
               <div>
                 <label className="form-label flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] mb-2.5">
                   <IoPeopleOutline size={14} />
-                  Número de Invitados
+                  Número de Asistencias
                 </label>
                 <div className="relative">
                   <select
@@ -192,9 +192,9 @@ export default function RSVP() {
                     onChange={handleChange}
                     className="select-premium"
                   >
-                   {[0, 1].map((n) => (
+                    {[0, 1, 2].map((n) => (
                       <option key={n} value={n} className="bg-[#123B63]">
-                        {n} {n === 1 ? 'Invitado' : 'Invitados'}
+                        {n === 0 ? 'No podré asistir' : `${n} ${n === 1 ? 'Asistencia' : 'Asistencias'}`}
                       </option>
                     ))}
                   </select>
