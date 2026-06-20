@@ -192,7 +192,7 @@ export default function RSVP() {
                     onChange={handleChange}
                     className="select-premium"
                   >
-                    {[0, 1, 2].map((n) => (
+                    {[0, 1].map((n) => (
                       <option key={n} value={n} className="bg-[#123B63]">
                         {n === 0 ? 'No podré asistir' : `${n} ${n === 1 ? 'Asistencia' : 'Asistencias'}`}
                       </option>
