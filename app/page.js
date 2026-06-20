@@ -84,6 +84,39 @@ export default function Home() {
           >
             <DynamicBackground />
             <Navbar />
+            {/* Flecha de navegación */}
+            <motion.button
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ 
+                opacity: 1,
+                x: 0
+              }}
+              transition={{
+                duration: 1,
+                delay: 2
+              }}
+              onClick={() => {
+                window.scrollBy({
+                  top: window.innerHeight,
+                  behavior: "smooth"
+                })
+              }}
+              className="fixed right-5 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-xl border border-[#f6dc7b]/50 text-[#f6dc7b] shadow-[0_0_20px_rgba(246,220,123,0.45)]"
+            >
+              <motion.span
+                animate={{
+                  y:[0,8,0]
+                }}
+                transition={{
+                  duration:1.8,
+                  repeat:Infinity,
+                  ease:"easeInOut"
+                }}
+                className="text-2xl"
+              >
+                ↓
+              </motion.span>
+            </motion.button>
             {sections.map(({ Component }, i) => (
               <motion.div
                 key={i}
