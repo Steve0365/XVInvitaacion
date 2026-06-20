@@ -9,6 +9,7 @@ import Hero from '../components/Hero'
 import CountdownSection from '../components/Countdown'
 import EventInfo from '../components/EventInfo'
 import DressCode from '../components/DressCode'
+import GiftSuggestion from '../components/GiftSuggestion'
 import SpecialMessage from '../components/SpecialMessage'
 import Trivia from '../components/Trivia'
 import Gallery from '../components/Gallery'
@@ -41,6 +42,7 @@ const sections = [
   { id: 'countdown', Component: CountdownSection },
   { id: 'evento', Component: EventInfo },
   { id: 'vestimenta', Component: DressCode },
+  { id: 'regalo', Component: GiftSuggestion },
   { id: 'mensaje', Component: SpecialMessage },
   { id: 'trivia', Component: Trivia },
   { id: 'galeria', Component: Gallery },

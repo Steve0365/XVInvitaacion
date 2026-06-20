@@ -48,7 +48,7 @@ export default function RSVP() {
     const data = {
       "entry.2001389412": formData.name,
       "entry.908209112": formData.phone,
-      "entry.346994890": formData.guests,
+      "entry.346994890": formData.guests === "0" ? "No asistiré" : formData.guests,
       "entry.1050979229": formData.message,
     }
 
@@ -192,7 +192,7 @@ export default function RSVP() {
                     onChange={handleChange}
                     className="select-premium"
                   >
-                    {[0, 1].map((n) => (
+                    {[0, 1, 2].map((n) => (
                       <option key={n} value={n} className="bg-[#123B63]">
                         {n === 0 ? 'No podré asistir' : `${n} ${n === 1 ? 'Asistencia' : 'Asistencias'}`}
                       </option>
